@@ -1,0 +1,19 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+GET         /                        controllers.HomeController.index
+#URL that allow scrap upser, you can pass queryParam recursive = true to scrap user too.
+POST        /userId                  controllers.UserScrapperController.scrapUser(userId: Long)
+
+#Used to retrieve only exisinting information, information that is already scrapped.
+GET         /userId                  controllers.UserController.user(userId: Long)
+GET         /userId/media            controllers.UserController.userMedia(userId: Long)
+GET         /userId/resolve          controllers.UserController.userResolve(userId: Long)
+GET         /userId/following        controllers.UserController.userFollowing(userId: Long)
+GET         /userId/followers        controllers.UserController.userFollowers(userId: Long)
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file            controllers.Assets.versioned(path="/public", file: Asset)
