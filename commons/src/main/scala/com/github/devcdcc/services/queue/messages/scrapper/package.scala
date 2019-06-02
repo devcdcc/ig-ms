@@ -1,6 +1,6 @@
-package com.github.devcdcc.queue.messages
+package com.github.devcdcc.services.queue.messages
 
-import com.github.devcdcc.queue.Message
+import com.github.devcdcc.services.queue.Message
 
 package object scrapper {
 
