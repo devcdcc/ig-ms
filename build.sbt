@@ -26,5 +26,3 @@ lazy val root = (project in file("."))
   .dependsOn(commons, services, `ig-http-api`)
   .aggregate(commons, services, `ig-http-api`)
   .enablePlugins(ScalafmtPlugin)
-
-libraryDependencies += guice
