@@ -2,9 +2,235 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f234ea48-32ae-48f2-802c-7c9ace1e401c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_chuusai_shapeless_2_12_2_3_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_dripower_play_circe_2_12_2711_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__com_github_luben_zstd_jni_1_3_8_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__io_circe_circe_core_2_12_0_11_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__io_circe_circe_generic_2_12_0_11_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__io_circe_circe_jawn_2_12_0_11_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__io_circe_circe_numbers_2_12_0_11_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__io_circe_circe_parser_2_12_0_11_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_kafka_connect_api_2_2_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_kafka_connect_json_2_2_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_kafka_kafka_clients_2_2_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_kafka_kafka_streams_2_2_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_lz4_lz4_java_1_5_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_rocksdb_rocksdbjni_5_15_10_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_typelevel_cats_core_2_12_1_5_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_typelevel_cats_kernel_2_12_1_5_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_typelevel_cats_macros_2_12_1_5_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_typelevel_jawn_parser_2_12_0_14_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_typelevel_machinist_2_12_0_6_6_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_xerial_snappy_snappy_java_1_1_7_2_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/Publisher.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/messages/scrapper/package.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/package.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$1d3380f7231af3f03b4f.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$437b35d4be44e764b82e.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$4a5d2418706d6c4891d1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/commons.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/commons.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ig-http-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ig-http-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ig-ms-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ig-ms-build.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ig-ms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ig-ms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ig-services.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ig-services.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commons/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/commons/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commons/src/main/scala/TestCommonsIG.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/commons/commons$sources/0.1/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/commons/commons$sources/0.1/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/commons/commons$sources/0.1/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/commons/commons$sources/0.1/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/commons/commons_2.12/0.1/resolved.xml.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/commons/commons_2.12/0.1/resolved.xml.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons$sources-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-compile-internal.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-compile.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-optional.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-provided.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-runtime-internal.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-runtime.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-scala-tool.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-test-internal.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/scala-2.12/resolution-cache/reports/commons-commons_2.12-test.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/$global/dependencyPositions/$global/streams/update_cache_2.12/input_dsp" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/$global/dependencyPositions/$global/streams/update_cache_2.12/input_dsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/$global/dependencyPositions/$global/streams/update_cache_2.12/output_dsp" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/$global/dependencyPositions/$global/streams/update_cache_2.12/output_dsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/$global/update/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/$global/update/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/$global/update/$global/streams/update_cache_2.12/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/$global/update/$global/streams/update_cache_2.12/inputs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/$global/update/$global/streams/update_cache_2.12/output" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/$global/update/$global/streams/update_cache_2.12/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/$global/updateClassifiers/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/$global/updateClassifiers/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/compile/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/compile/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/compile/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/compile/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/runtime/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/runtime/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/runtime/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/runtime/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/test/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/test/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/target/streams/test/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/commons/target/streams/test/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/ig-http-api/ig-http-api$sources/0.1/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/ig-http-api/ig-http-api$sources/0.1/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/ig-http-api/ig-http-api$sources/0.1/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/ig-http-api/ig-http-api$sources/0.1/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/ig-http-api/ig-http-api_2.12/0.1/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/ig-http-api/ig-http-api_2.12/0.1/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/ig-http-api/ig-http-api_2.12/0.1/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/ig-http-api/ig-http-api_2.12/0.1/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-debian.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-debian.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-docs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-docs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-linux.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-linux.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-rpm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-rpm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-universal-docs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-universal-docs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-universal-src.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-universal-src.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-universal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-universal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-web-assets-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-web-assets-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-web-assets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-web-assets.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-web-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-web-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-windows.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api$sources-windows.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-debian.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-debian.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-docs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-docs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-linux.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-linux.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-rpm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-rpm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-universal-docs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-universal-docs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-universal-src.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-universal-src.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-universal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-universal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-web-assets-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-web-assets-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-web-assets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-web-assets.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-web-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-web-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-windows.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/scala-2.12/resolution-cache/reports/ig-http-api-ig-http-api_2.12-windows.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/streams/$global/update/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/streams/$global/update/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/streams/$global/update/$global/streams/update_cache_2.12/output" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/streams/$global/update/$global/streams/update_cache_2.12/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/streams/$global/updateClassifiers/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/streams/$global/updateClassifiers/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/streams/compile/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/streams/compile/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/streams/compile/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/streams/compile/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/streams/runtime/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/streams/runtime/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/streams/runtime/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/streams/runtime/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/streams/test/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/streams/test/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-http-api/target/streams/test/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-http-api/target/streams/test/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/ig-services/ig-services$sources/0.1/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/ig-services/ig-services$sources/0.1/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/ig-services/ig-services$sources/0.1/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/ig-services/ig-services$sources/0.1/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/ig-services/ig-services_2.12/0.1/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/ig-services/ig-services_2.12/0.1/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/ig-services/ig-services_2.12/0.1/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/ig-services/ig-services_2.12/0.1/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services$sources-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/scala-2.12/resolution-cache/reports/ig-services-ig-services_2.12-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/streams/$global/update/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/streams/$global/update/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/streams/$global/update/$global/streams/update_cache_2.12/output" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/streams/$global/update/$global/streams/update_cache_2.12/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/streams/$global/updateClassifiers/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/streams/$global/updateClassifiers/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/streams/compile/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/streams/compile/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/streams/compile/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/streams/compile/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/streams/runtime/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/streams/runtime/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/streams/runtime/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/streams/runtime/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/streams/test/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/streams/test/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ig-services/target/streams/test/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/ig-services/target/streams/test/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$31e61d47de72f90436c1$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$31e61d47de72f90436c1.cache" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/config-classes/$1d3380f7231af3f03b4f.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$31e61d47de72f90436c1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$35a6cf8f1b3e62a974ba$.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/config-classes/$4a5d2418706d6c4891d1$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$35a6cf8f1b3e62a974ba.cache" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/config-classes/$437b35d4be44e764b82e.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$35a6cf8f1b3e62a974ba.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$4272e6f7c157b569ec48$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$4272e6f7c157b569ec48.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$4272e6f7c157b569ec48.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$7a59e8581842e83029f3$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$7a59e8581842e83029f3.cache" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/config-classes/$4a5d2418706d6c4891d1.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$7a59e8581842e83029f3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8a46b7111985deb99011$.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/config-classes/$1d3380f7231af3f03b4f$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8a46b7111985deb99011.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8a46b7111985deb99011.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$916edaa1c9e218870e04$.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/config-classes/$a263c6c494525e2efd4d$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$916edaa1c9e218870e04.cache" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/config-classes/$a263c6c494525e2efd4d.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$916edaa1c9e218870e04.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/config-classes/$a263c6c494525e2efd4d.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$cdff1a80f674c64e0f04$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$cdff1a80f674c64e0f04.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$cdff1a80f674c64e0f04.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$d21e1250a7b71d108882$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$d21e1250a7b71d108882.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$d21e1250a7b71d108882.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$e329df8c7433e689c32d$.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/config-classes/$437b35d4be44e764b82e$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$e329df8c7433e689c32d.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$e329df8c7433e689c32d.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/$global/update/$global/streams/update_cache_2.12/output" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/$global/update/$global/streams/update_cache_2.12/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.github.devcdcc/ig-ms$sources/0.1/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.github.devcdcc/ig-ms$sources/0.1/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.github.devcdcc/ig-ms$sources/0.1/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.github.devcdcc/ig-ms$sources/0.1/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.github.devcdcc/ig-ms_2.12/0.1/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.github.devcdcc/ig-ms_2.12/0.1/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.github.devcdcc/ig-ms_2.12/0.1/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.github.devcdcc/ig-ms_2.12/0.1/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms$sources-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.github.devcdcc-ig-ms_2.12-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/dependencyPositions/$global/streams/update_cache_2.12/output_dsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/dependencyPositions/$global/streams/update_cache_2.12/output_dsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/update_cache_2.12/output" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/update_cache_2.12/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/managedClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/test/externalDependencyClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/test/externalDependencyClasspath/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/test/managedClasspath/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/test/managedClasspath/$global/streams/export" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -48,19 +274,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.sbt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ig-http-api/conf/routes">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="486">
-              <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+              <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -68,8 +285,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/ClaseDePrueba.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="54">
+              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -77,26 +294,62 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/commons/build.sbt">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ig-http-api/app/controllers/UserScrapperController.scala">
+        <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/Publisher.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+            <state relative-caret-position="81">
+              <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ig-http-api/app/controllers/MediaController.scala">
+        <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/messages/scrapper/package.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+            <state relative-caret-position="162">
+              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.7-sources.jar!/scala/AnyVal.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="52" column="15" selection-start-line="52" selection-start-column="15" selection-end-line="52" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/package.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="131">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.7-sources.jar!/scala/collection/generic/TraversableFactory.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -105,39 +358,20 @@
         <entry file="file://$PROJECT_DIR$/ig-http-api/app/controllers/UserController.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="457">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/sbt-1.2.8.jar!/sbt/package.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/main_2.12-1.2.8.jar!/sbt/Project.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/main_2.12-1.2.8.jar!/sbt/ProjectExtra.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Package Object" />
+        <option value="Scala Object" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -159,6 +393,13 @@
         <option value="$PROJECT_DIR$/ig-http-api/app/controllers/MediaController.scala" />
         <option value="$PROJECT_DIR$/ig-http-api/app/controllers/UserController.scala" />
         <option value="$PROJECT_DIR$/ig-http-api/conf/routes" />
+        <option value="$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/messages/Message.scala" />
+        <option value="$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/SeedMessage.scala" />
+        <option value="$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/Publisher.scala" />
+        <option value="$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/messages/package.scala" />
+        <option value="$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/package.scala" />
+        <option value="$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/messages/scrapper/messages.scala" />
+        <option value="$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/messages/scrapper/package.scala" />
         <option value="$PROJECT_DIR$/commons/build.sbt" />
       </list>
     </option>
@@ -219,6 +460,39 @@
               <item name="scala" type="462c0819:PsiDirectoryNode" />
               <item name="devcdcc" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ig-ms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ig-ms" type="462c0819:PsiDirectoryNode" />
+              <item name="commons" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="devcdcc" type="462c0819:PsiDirectoryNode" />
+              <item name="queue" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ig-ms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ig-ms" type="462c0819:PsiDirectoryNode" />
+              <item name="commons" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="devcdcc" type="462c0819:PsiDirectoryNode" />
+              <item name="queue" type="462c0819:PsiDirectoryNode" />
+              <item name="messages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ig-ms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ig-ms" type="462c0819:PsiDirectoryNode" />
+              <item name="commons" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="devcdcc" type="462c0819:PsiDirectoryNode" />
+              <item name="queue" type="462c0819:PsiDirectoryNode" />
+              <item name="messages" type="462c0819:PsiDirectoryNode" />
+              <item name="scrapper" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -230,13 +504,18 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="controllers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -301,7 +580,6 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4677660694000" />
         <entry key="$PROJECT_DIR$/build.sbt" value="917358874" />
         <entry key="$PROJECT_DIR$/project/build.properties" value="1396028727" />
         <entry key="$PROJECT_DIR$/project/plugins.sbt" value="1957876809" />
@@ -325,12 +603,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1559265280378</updated>
-      <workItem from="1559265292618" duration="16120000" />
+      <workItem from="1559265292618" duration="26490000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16120000" />
+    <option name="totallyTimeSpent" value="26490000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1912" height="1044" extended-state="0" />
@@ -344,7 +622,7 @@
       <window_info id="Learn" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2497309" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Build" sideWeight="0.4994618" />
+      <window_info anchor="bottom" id="Build" sideWeight="0.4994618" weight="0.32962137" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" />
       <window_info anchor="bottom" id="Terminal" visible="true" weight="0.33073497" />
       <window_info anchor="bottom" id="Event Log" sideWeight="0.50053823" side_tool="true" />
@@ -361,7 +639,7 @@
       <window_info anchor="right" id="Maven" />
       <window_info anchor="right" id="Cargo" />
       <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="sbt" weight="0.32992464" />
+      <window_info anchor="right" id="sbt" visible="true" weight="0.32992464" />
       <window_info anchor="right" id="Capture Analysis" />
       <window_info anchor="right" id="Gradle" />
       <window_info anchor="right" id="Database" />
@@ -421,35 +699,119 @@
     <entry file="file://$PROJECT_DIR$/ig-http-api/app/controllers/MediaController.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
-          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ig-http-api/app/controllers/UserController.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ig-http-api/conf/routes">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
-          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/kafka/Producer.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/ClaseDePrueba.scala">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/messages/Message.scala">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.7-sources.jar!/scala/collection/generic/TraversableFactory.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.7-sources.jar!/scala/collection/Iterable.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.7-sources.jar!/scala/package.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/SeedMessage.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.7-sources.jar!/scala/AnyVal.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="52" column="15" selection-start-line="52" selection-start-column="15" selection-end-line="52" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/messages/package.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/Publisher.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/package.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons/src/main/scala/com/github/devcdcc/queue/messages/scrapper/package.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/commons/build.sbt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="378">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
         </state>
       </provider>
     </entry>

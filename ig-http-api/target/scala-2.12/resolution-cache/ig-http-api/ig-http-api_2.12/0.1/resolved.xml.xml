@@ -4,7 +4,7 @@
 		module="ig-http-api_2.12"
 		revision="0.1"
 		status="integration"
-		publication="20190530221757"
+		publication="20190602053426"
 	>
 		<description>
 		ig-http-api
