@@ -6,54 +6,48 @@ import akka.{Done, NotUsed}
 import akka.actor.ActorSystem
 import akka.kafka.scaladsl.Producer
 import akka.kafka.ProducerSettings
-import akka.stream.ActorMaterializer
-import akka.stream.scaladsl.Source
 import com.github.devcdcc.services.queue._
 import com.google.inject.Singleton
 import com.typesafe.config.{Config, ConfigFactory}
 
 import scala.util.Try
-import org.apache.kafka.clients.producer.{ProducerRecord, RecordMetadata}
+import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.{Serializer, StringSerializer}
 
 import scala.collection.JavaConverters._
-import scala.concurrent.duration.Duration
-import scala.concurrent.{ExecutionContext, ExecutionContextExecutor, Future}
+import scala.concurrent.{ExecutionContext, Future}
 
 /**
-  *
-  * @param keySerializer
-  * @param valueSerializer
-  * @param system
-  * @param config
-  * @param executor an [[ExecutionContextExecutor]] where gonna run this producer
-  * @tparam K1
-  * @tparam V1
+  * This is an implementation for [[Publisher]] class, that allow communicate
+  * to kafka broker and publish messages.
+  * @param keySerializer A [[K]] value used to initialize kafka kafka producer.
+  * @param valueSerializer A [[V]] value used to initialize kafka kafka producer.
+  * @param system actor systems that isolate the [[ExecutionContext]]
+  * @param config configuration where run the producer, also contains the [[ExecutionContext]] where
+  *               gonna runs the [[Future]] that is executed on [[sendAsync()]] method.
+  * @param executionContext an [[ExecutionContext]] where gonna run this producer
+  * @tparam K Type of key for kafka producer
+  * @tparam V Type of Value for Kafka producer
   */
 @Singleton
-class KafkaPublisher[K1, V1](
-    keySerializer: Serializer[K1],
-    valueSerializer: Serializer[V1]
+class KafkaPublisher[K, V](
+    keySerializer: Serializer[K],
+    valueSerializer: Serializer[V]
   )(implicit val system: ActorSystem = ActorSystem.create("kafka-producer",
         ConfigFactory.parseFile(new java.io.File("config/application.conf"))),
     private var config: Config = null,
-    implicit private var executor: ExecutionContext = null)
-    extends Publisher[K1, V1] {
+    implicit private var executionContext: ExecutionContext = null)
+    extends Publisher[K, V] {
 
-  // setting executor if its null
-  if (executor == null) executor = system.dispatcher
+  // setting executionContext if its null
+  if (executionContext == null) executionContext = system.dispatcher
   // setting config if its null
   if (config == null) config = system.settings.config.getConfig("akka.kafka.producer")
 
   /**
-    * [[ActorMaterializer]] that gonna run send method.
-    */
-  implicit private val actorMaterializer: ActorMaterializer = ActorMaterializer()
-
-  /**
     * [[ProducerSettings]] it's loads from application.conf File
     */
-  private val producerSettings: ProducerSettings[K1, V1] =
+  private val producerSettings: ProducerSettings[K, V] =
     ProducerSettings(
       config,
       keySerializer,
@@ -63,16 +57,16 @@ class KafkaPublisher[K1, V1](
   /**
     * [[Producer]] that send messages to kafka
     */
-  private val producer: org.apache.kafka.clients.producer.Producer[K1, V1] = producerSettings.createKafkaProducer()
+  private val producer: org.apache.kafka.clients.producer.Producer[K, V] = producerSettings.createKafkaProducer()
 
   private def headerConverter(header: HeaderMessage) = new org.apache.kafka.common.header.Header {
     override def key(): String        = header._1
     override def value(): Array[Byte] = header._2
   }
 
-  private def messageToProducerRecord[OV](message: Message[K1, OV, V1]): ProducerRecord[K1, V1] = message match {
+  private def messageToProducerRecord[OV](message: Message[K, OV, V]): ProducerRecord[K, V] = message match {
     case Message(topic, _, key, partition, timesTamp, headers, _) =>
-      new ProducerRecord[K1, V1](
+      new ProducerRecord[K, V](
         topic,
         partition,
         timesTamp,
@@ -89,28 +83,31 @@ class KafkaPublisher[K1, V1](
 
   /**
     * Method used to send a async messages to kafka broker.
-    * @param message this parameter have many fields that could be set to configure a message and send it to the publisher
+    * @param message this parameter have many fields that could be set to
+    *                configure a message and send it to the publisher
     * @tparam OV OV original message value that gonna be send, internally that value is converted to the target value.
-    * @return [[Future]] that could catch later if the message was successful sent.
+    * @return [[Future]] that returns the same message or maybe some fields could be modified by the
+    *        protocol implementation.
+    *        Actually kafka add the partition and offset message.
     */
-  override def sendAsync[OV](message: Message[K1, OV, V1]*): Future[Done] = {
-    val seq: Seq[ProducerRecord[K1, V1]] = message.map(messageToProducerRecord)
-    val iterable: scala.collection.immutable.Iterable[ProducerRecord[K1, V1]] =
-      scala.collection.immutable.Iterable(seq.toArray: _*)
-    val source: Source[ProducerRecord[K1, V1], NotUsed] = Source[ProducerRecord[K1, V1]](iterable)
-    source
-      .runWith(Producer.plainSink(producerSettings, producer))
+  def sendAsync[OV](message: Message[K, OV, V]): Future[Message[K, OV, V]] = Future {
+    val recordMetadata = producer.send(messageToProducerRecord(message)).get
+    message.withOffset(recordMetadata.offset()).withPartition(recordMetadata.partition())
   }
 
   /**
     * Method used to send a sync message to kafka broker.
-    * @param message this parameter have many fields that could be set to configure a message and send it to the publisher
-    * @param timeOut
+    * @param message this parameter have many fields that could be set to
+    *                configure a message and send it to the publisher
     * @tparam OV OV original message value that gonna be send, internally that value is converted to the target value.
-    * @return [[Either]][\[[Throwable]],[\[[Unit]]] that could catch if the message was successful sent.
+    * @return [[Either]][\[[Throwable]],[\[[Message]]] that could catch if the message was successful sent and return
+    *        the same message or maybe some fields could be modified by the protocol implementation.
+    *        Actually kafka add the partition and offset message.
     */
-  override def send[OV](message: Message[K1, OV, V1]*)(implicit timeOut: Duration): Either[Throwable, Unit] =
-    Try(scala.concurrent.Await.result(this.sendAsync(message: _*), timeOut)).toEither.map(_ => ())
+  def send[OV](message: Message[K, OV, V]): Either[Throwable, Message[K, OV, V]] =
+    Try(producer.send(messageToProducerRecord(message)).get)
+      .map(recordMetadata => message.withOffset(recordMetadata.offset()))
+      .toEither
 
   /**
     * close the [[producer]] kafka connection.
@@ -129,6 +126,6 @@ object TestingKafka extends App {
   import scala.concurrent.duration._
 
   implicit private val duration: Duration = Duration(1000, MILLISECONDS)
-  for (i <- 0 until 10)
+  for (i <- 0 until 1)
     producer send (Message("test", Calendar.getInstance().getTimeInMillis.toString))
 }
