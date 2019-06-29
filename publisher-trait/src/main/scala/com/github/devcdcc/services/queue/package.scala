@@ -1,7 +1,5 @@
 package com.github.devcdcc.services
-import org.mongodb.scala.bson._
-//import io.circe.{Json => CirceJson}
-//import play.api.libs.json.{JsValue => PlayJsValue, Json => PlayJson}
+
 package object queue {
 
   type HeaderMessage = (String, Array[Byte])
@@ -13,21 +11,33 @@ package object queue {
       timesTamp: java.lang.Long = null,
       headers: Iterable[HeaderMessage] = null,
       offset: Option[Long] = None
-    )(implicit converter: MessageConverter[OV, V]) {
+    )(implicit converter: MessageValueConverter[OV, V]) {
 
-    def convert: V                                       = converter.convert(this.value)
-    override def toString: String                        = converter.stringify
+    def convertValue: V                                  = converter.valueConvert(this.value)
     def withOffset(offset: Long): Message[K, OV, V]      = this.copy(offset = Option(offset))
     def withPartition(partition: Int): Message[K, OV, V] = this.copy(partition = partition)
   }
 
-  trait MessageConverter[V, T] {
-    def convert(value: V): T
-    def stringify: String = super.toString
+  /**
+    * [[MessageValueConverter]] is an trait that helps to define a conversion that gonna be used to
+    * convert the message value to his destination value. For example, if you want to convert a Json to
+    * an String you can define MessageConverter[Json, String] and inside convert method do the convert.
+    *
+    * @tparam OV Original value
+    * @tparam DV Destination value target of message.
+    */
+  trait MessageValueConverter[OV, DV] {
+
+    /**
+      * Map a origin value [[OV]] to a destination value [[DV]]
+      * @param value [[OV]].
+      * @return returns an [[DV]] once [[OV]] is converted.
+      */
+    def valueConvert(value: OV): DV
   }
 
-  class SimpleStringMessageConverter extends MessageConverter[String, String] {
-    override def convert(value: String): String = value
+  class SimpleStringMessageValueConverter extends MessageValueConverter[String, String] {
+    @inline override def valueConvert(value: String): String = value
   }
 
 }

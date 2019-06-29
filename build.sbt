@@ -39,7 +39,7 @@ libraryDependencies += "org.scalactic" %% "scalactic"     % "3.0.5"
 libraryDependencies += "org.scalatest" %% "scalatest"     % "3.0.5" % Test
 libraryDependencies += "org.mockito"   %% "mockito-scala" % "1.1.2" % Test
 // https://mvnrepository.com/artifact/com.typesafe.akka/akka-stream-kafka
-libraryDependencies += "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.4"
+libraryDependencies += "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.1"
 
 val commonSettings = Seq(
   organization := "com.github.devcdcc",
@@ -68,3 +68,5 @@ lazy val root = (project in file("."))
   .dependsOn(`publisher-trait`, `ig-http-api`, `ig-crawler`)
   .aggregate(`publisher-trait`, `ig-http-api`, `ig-crawler`)
   .enablePlugins(ScalafmtPlugin)
+
+scalafmtOnCompile := true

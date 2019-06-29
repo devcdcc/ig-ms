@@ -77,7 +77,7 @@ class KafkaPublisher[K1, V1](
         partition,
         timesTamp,
         key,
-        message.convert,
+        message.convertValue,
         if (headers == null)
           null
         else
@@ -124,7 +124,7 @@ class KafkaPublisher[K1, V1](
 object TestingKafka extends App {
   import scala.concurrent.ExecutionContext.Implicits.global
   val p                                     = new KafkaPublisher(new StringSerializer, new StringSerializer)()
-  implicit val simpleStringMessageConverter = new SimpleStringMessageConverter
+  implicit val simpleStringMessageConverter = new SimpleStringMessageValueConverter
 
   import scala.concurrent.duration._
 

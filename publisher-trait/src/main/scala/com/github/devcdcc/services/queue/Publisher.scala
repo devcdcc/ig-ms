@@ -1,10 +1,6 @@
 package com.github.devcdcc.services.queue
 
-import akka.Done
-
-import scala.concurrent.{ExecutionContext, Future}
-import scala.concurrent.duration.Duration
-import scala.util.Try
+import scala.concurrent.Future
 
 /**
   * this trait is an interface abstraction that allow a simple and unified way of communication to the

@@ -2,7 +2,6 @@ package com.github.devcdcc.services.queue.publishers
 
 import java.util.Calendar
 
-import akka.{Done, NotUsed}
 import akka.actor.ActorSystem
 import akka.kafka.scaladsl.Producer
 import akka.kafka.ProducerSettings
@@ -47,7 +46,7 @@ class KafkaPublisher[K, V](
   /**
     * [[ProducerSettings]] it's loads from application.conf File
     */
-  private val producerSettings: ProducerSettings[K, V] =
+  protected val producerSettings: ProducerSettings[K, V] =
     ProducerSettings(
       config,
       keySerializer,
@@ -57,7 +56,7 @@ class KafkaPublisher[K, V](
   /**
     * [[Producer]] that send messages to kafka
     */
-  private val producer: org.apache.kafka.clients.producer.Producer[K, V] = producerSettings.createKafkaProducer()
+  protected val producer: org.apache.kafka.clients.producer.Producer[K, V] = producerSettings.createKafkaProducer()
 
   private def headerConverter(header: HeaderMessage) = new org.apache.kafka.common.header.Header {
     override def key(): String        = header._1
@@ -71,7 +70,7 @@ class KafkaPublisher[K, V](
         partition,
         timesTamp,
         key,
-        message.convert,
+        message.convertValue,
         if (headers == null)
           null
         else
@@ -121,7 +120,7 @@ class KafkaPublisher[K, V](
 object TestingKafka extends App {
   import scala.concurrent.ExecutionContext.Implicits.global
   val producer                              = new KafkaPublisher(new StringSerializer, new StringSerializer)()
-  implicit val simpleStringMessageConverter = new SimpleStringMessageConverter
+  implicit val simpleStringMessageConverter = new SimpleStringMessageValueConverter
 
   import scala.concurrent.duration._
 
