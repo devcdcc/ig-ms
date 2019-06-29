@@ -14,7 +14,7 @@ libraryDependencies += guice
 // https://mvnrepository.com/artifact/com.typesafe.play/play-json
 libraryDependencies += "com.typesafe.play" %% "play-json" % "2.7.2"
 
-val circeVersion = "0.11.1"
+val circeVersion = "0.11.0"
 // https://mvnrepository.com/artifact/org.http4s/http4s-circe
 val http4sVersion = "0.20.1"
 libraryDependencies ++= Seq(
@@ -52,7 +52,6 @@ val commonSettings = Seq(
 
 lazy val commons = (project in file("commons"))
   .settings(commonSettings)
-  .settings(Seq(libraryDependencies += "com.github.devcdcc" %% "publisher-trait" % projectVersion))
   .enablePlugins(ScalafmtPlugin)
 
 lazy val `publisher-trait` = (project in file("publisher-trait"))
@@ -65,6 +64,8 @@ lazy val `ig-http-api` = (project in file("ig-http-api"))
   .settings(commonSettings)
   .enablePlugins(ScalafmtPlugin)
   .enablePlugins(PlayScala)
+  .dependsOn(`publisher-trait`)
+  .aggregate(`publisher-trait`)
 
 lazy val `ig-crawler` = (project in file("ig-crawler"))
   .settings(commonSettings)
