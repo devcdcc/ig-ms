@@ -27,6 +27,16 @@ class UserScrapperController @Inject()(cc: ControllerComponents) extends Abstrac
     ???
   }
 
-  def scrapMediaFromUser(userId: Long, mediaId: String) = ???
+  def scrapMedia(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
+    ???
+  }
+
+  def scrapFollowing(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
+    ???
+  }
+
+  def scrapFollowers(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
+    ???
+  }
 
 }

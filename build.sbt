@@ -53,6 +53,7 @@ lazy val commons = (project in file("commons"))
 
 lazy val `publisher-trait` = (project in file("publisher-trait"))
   .settings(commonSettings)
+  .enablePlugins(ScalafmtPlugin)
   .dependsOn(commons)
   .aggregate(commons)
 
