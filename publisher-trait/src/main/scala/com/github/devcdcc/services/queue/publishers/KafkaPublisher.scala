@@ -24,7 +24,6 @@ import scala.concurrent.{ExecutionContext, Future}
   * @param system actor systems that isolate the [[ExecutionContext]]
   * @param config configuration where run the producer, also contains the [[ExecutionContext]] where
   *               gonna runs the [[Future]] that is executed on [[sendAsync()]] method.
-  * @param executionContext an [[ExecutionContext]] where gonna run this producer
   * @tparam K Type of key for kafka producer
   * @tparam V Type of Value for Kafka producer
   */
@@ -32,14 +31,12 @@ import scala.concurrent.{ExecutionContext, Future}
 class KafkaPublisher[K, V](
     keySerializer: Serializer[K],
     valueSerializer: Serializer[V]
-  )(implicit val system: ActorSystem = ActorSystem.create("kafka-producer",
-        ConfigFactory.parseFile(new java.io.File("config/application.conf"))),
-    private var config: Config = null,
-    implicit private var executionContext: ExecutionContext = null)
+  )(implicit val system: ActorSystem,
+    private var config: Config = null)
     extends Publisher[K, V] {
 
   // setting executionContext if its null
-  if (executionContext == null) executionContext = system.dispatcher
+  implicit val executionContext: ExecutionContext = system.dispatcher
   // setting config if its null
   if (config == null) config = system.settings.config.getConfig("akka.kafka.producer")
 
@@ -119,7 +116,10 @@ class KafkaPublisher[K, V](
 
 object TestingKafka extends App {
   import scala.concurrent.ExecutionContext.Implicits.global
-  val producer                              = new KafkaPublisher(new StringSerializer, new StringSerializer)()
+
+  val producer = new KafkaPublisher(new StringSerializer, new StringSerializer)(
+    ActorSystem.create("kafka-producer", ConfigFactory.parseFile(new java.io.File("config/application.conf")))
+  )
   implicit val simpleStringMessageConverter = new SimpleStringMessageValueConverter
 
   import scala.concurrent.duration._

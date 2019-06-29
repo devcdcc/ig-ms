@@ -56,16 +56,21 @@ lazy val commons = (project in file("commons"))
 
 lazy val `publisher-trait` = (project in file("publisher-trait"))
   .settings(commonSettings)
+  .settings(
+    libraryDependencies += "com.dslplatform" %% "dsl-json-scala" % "1.9.3",
+    libraryDependencies += "org.scalatest"   %% "scalatest"      % "3.0.5" % Test,
+    // https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams-scala
+    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.1.1"
+  )
   .enablePlugins(ScalafmtPlugin)
   .dependsOn(commons)
   .aggregate(commons)
-
 lazy val `ig-http-api` = (project in file("ig-http-api"))
   .settings(commonSettings)
-  .enablePlugins(ScalafmtPlugin)
-  .enablePlugins(PlayScala)
   .dependsOn(`publisher-trait`)
   .aggregate(`publisher-trait`)
+  .enablePlugins(ScalafmtPlugin)
+  .enablePlugins(PlayScala)
 
 lazy val `ig-crawler` = (project in file("ig-crawler"))
   .settings(commonSettings)

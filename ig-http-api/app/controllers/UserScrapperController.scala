@@ -1,5 +1,6 @@
 package controllers
 
+import com.github.devcdcc.services.queue.Publisher
 import javax.inject._
 import play.api.mvc._
 
@@ -10,7 +11,8 @@ import scala.concurrent.Future
   * application's home page.
   */
 @Singleton
-class UserScrapperController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+class UserScrapperController @Inject()(cc: ControllerComponents, publisher: Publisher[String, String])
+    extends AbstractController(cc) {
 
   /**
     * Create an Action to render an HTML page.
