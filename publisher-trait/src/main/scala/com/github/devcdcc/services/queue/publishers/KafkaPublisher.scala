@@ -8,6 +8,7 @@ import akka.kafka.ProducerSettings
 import com.github.devcdcc.services.queue._
 import com.google.inject.Singleton
 import com.typesafe.config.{Config, ConfigFactory}
+import javax.inject.Inject
 
 import scala.util.Try
 import org.apache.kafka.clients.producer.ProducerRecord
@@ -27,11 +28,10 @@ import scala.concurrent.{ExecutionContext, Future}
   * @tparam K Type of key for kafka producer
   * @tparam V Type of Value for Kafka producer
   */
-@Singleton
-class KafkaPublisher[K, V](
+abstract class KafkaPublisher[K, V](
     keySerializer: Serializer[K],
-    valueSerializer: Serializer[V]
-  )(implicit val system: ActorSystem,
+    valueSerializer: Serializer[V],
+    system: ActorSystem,
     private var config: Config = null)
     extends Publisher[K, V] {
 
@@ -114,17 +114,19 @@ class KafkaPublisher[K, V](
 
 }
 
-object TestingKafka extends App {
-  import scala.concurrent.ExecutionContext.Implicits.global
-
-  val producer = new KafkaPublisher(new StringSerializer, new StringSerializer)(
-    ActorSystem.create("kafka-producer", ConfigFactory.parseFile(new java.io.File("config/application.conf")))
-  )
-  implicit val simpleStringMessageConverter = new SimpleStringMessageValueConverter
-
-  import scala.concurrent.duration._
-
-  implicit private val duration: Duration = Duration(1000, MILLISECONDS)
-  for (i <- 0 until 1)
-    producer send (Message("test", Calendar.getInstance().getTimeInMillis.toString))
-}
+//object TestingKafka extends App {
+//  import scala.concurrent.ExecutionContext.Implicits.global
+//
+//  val producer = new KafkaPublisher(
+//    new StringSerializer,
+//    new StringSerializer,
+//    ActorSystem.create("kafka-producer", ConfigFactory.parseFile(new java.io.File("config/application.conf")))
+//  )
+//  implicit val simpleStringMessageConverter = new SimpleStringMessageValueConverter
+//
+//  import scala.concurrent.duration._
+//
+//  implicit private val duration: Duration = Duration(1000, MILLISECONDS)
+//  for (i <- 0 until 1)
+//    producer send (Message("test", Calendar.getInstance().getTimeInMillis.toString))
+//}
