@@ -1,6 +1,8 @@
 package controllers
 
+import com.github.devcdcc.services.queue.Publisher
 import javax.inject._
+import play.api.inject.ApplicationLifecycle
 import play.api.mvc._
 
 import scala.concurrent.Future
@@ -10,7 +12,8 @@ import scala.concurrent.Future
   * application's home page.
   */
 @Singleton
-class UserScrapperController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+class UserScrapperController @Inject()(cc: ControllerComponents, lifecycle: ApplicationLifecycle)
+    extends AbstractController(cc) {
 
   /**
     * Create an Action to render an HTML page.
@@ -24,9 +27,19 @@ class UserScrapperController @Inject()(cc: ControllerComponents) extends Abstrac
   }
 
   def scrapUser(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
+    Future.successful(Ok(userId.toString))
+  }
+
+  def scrapMedia(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
     ???
   }
 
-  def scrapMediaFromUser(userId: Long, mediaId: String) = ???
+  def scrapFollowing(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
+    ???
+  }
+
+  def scrapFollowers(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
+    ???
+  }
 
 }

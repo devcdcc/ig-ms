@@ -11,8 +11,6 @@ import play.api.mvc._
 @Singleton
 class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
-  val x = new com.github.devcdcc.ClaseDePrueba
-
   /**
     * Create an Action to render an HTML page.
     *
