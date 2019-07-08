@@ -9,5 +9,4 @@ class IGRequestSelectorSpec extends PlaySpec with MockitoSugar {
   var ws: WSClient = mock[WSClient]
   var subject      = new IGRequestSelector(ws)
 
-  it "return fa"
 }
