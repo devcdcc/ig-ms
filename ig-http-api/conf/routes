@@ -7,17 +7,17 @@
 GET         /                        controllers.HomeController.index
 
 #URL that allow scrap user, you can pass queryParam recursive = true to scrap user too.
-POST        /user/:userId                  controllers.UserScrapperController.scrapUser(userId: Long)
-POST        /user/:userId/media            controllers.UserScrapperController.scrapMedia(userId: Long)
-POST        /user/:userId/following        controllers.UserScrapperController.scrapFollowing(userId: Long)
-POST        /user/:userId/followers        controllers.UserScrapperController.scrapFollowers(userId: Long)
+POST        /user/:userId                  controllers.UserScrapperController.scrapUser(userId: String)
+POST        /user/:userId/media            controllers.UserScrapperController.scrapMedia(userId: String)
+POST        /user/:userId/following        controllers.UserScrapperController.scrapFollowing(userId: String)
+POST        /user/:userId/followers        controllers.UserScrapperController.scrapFollowers(userId: String)
 
 #Used to retrieve only exisinting information, information that is already scrapped.
-GET         /user/:userId                  controllers.UserController.user(userId: Long)
-GET         /user/:userId/media            controllers.UserController.userMedia(userId: Long, next_max_id:Option[String])
-GET         /user/:userId/resolve          controllers.UserController.userResolve(userId: Long, next_max_id:Option[String])
-GET         /user/:userId/following        controllers.UserController.userFollowing(userId: Long, next_max_id:Option[String])
-GET         /user/:userId/followers        controllers.UserController.userFollowers(userId: Long, next_max_id:Option[String])
+GET         /user/:userId                  controllers.UserController.user(userId: String)
+GET         /user/:userId/media            controllers.UserController.userMedia(userId: String, next_max_id:Option[String])
+GET         /user/:userId/resolve          controllers.UserController.userResolve(userId: String, next_max_id:Option[String])
+GET         /user/:userId/following        controllers.UserController.userFollowing(userId: String, next_max_id:Option[String])
+GET         /user/:userId/followers        controllers.UserController.userFollowers(userId: String, next_max_id:Option[String])
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file            controllers.Assets.versioned(path="/public", file: Asset)

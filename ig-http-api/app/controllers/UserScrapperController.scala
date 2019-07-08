@@ -1,6 +1,7 @@
 package controllers
 
 import com.github.devcdcc.services.queue.Publisher
+import controllers.authentication.AccessTokenHelper
 import javax.inject._
 import play.api.inject.ApplicationLifecycle
 import play.api.mvc._
@@ -12,8 +13,9 @@ import scala.concurrent.Future
   * application's home page.
   */
 @Singleton
-class UserScrapperController @Inject()(cc: ControllerComponents, lifecycle: ApplicationLifecycle)
-    extends AbstractController(cc) {
+class UserScrapperController @Inject()(cc: ControllerComponents, publisher: Publisher[String, String])
+    extends AbstractController(cc)
+    with AccessTokenHelper {
 
   /**
     * Create an Action to render an HTML page.
@@ -23,22 +25,26 @@ class UserScrapperController @Inject()(cc: ControllerComponents, lifecycle: Appl
     * a path of `/`.
     */
   def index() = Action { implicit request: Request[AnyContent] =>
+    Unauthorized("")
     Ok(views.html.index())
   }
 
-  def scrapUser(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
-    Future.successful(Ok(userId.toString))
+  def scrapUser(userId: String) = Action.async { implicit request: Request[AnyContent] =>
+    authenticatedPrivateSiteIdAsync { authenticatedUser =>
+      Future.successful(Ok(authenticatedUser.toString))
+    }
+
   }
 
-  def scrapMedia(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
+  def scrapMedia(userId: String) = Action.async { implicit request: Request[AnyContent] =>
     ???
   }
 
-  def scrapFollowing(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
+  def scrapFollowing(userId: String) = Action.async { implicit request: Request[AnyContent] =>
     ???
   }
 
-  def scrapFollowers(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
+  def scrapFollowers(userId: String) = Action.async { implicit request: Request[AnyContent] =>
     ???
   }
 

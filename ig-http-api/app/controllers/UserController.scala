@@ -23,18 +23,18 @@ class UserController @Inject()(cc: ControllerComponents) extends AbstractControl
     Ok(views.html.index())
   }
 
-  def user(userId: Long): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+  def user(userId: String): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     ???
   }
 
-  def userMedia(userId: Long, next_max_id: Option[String]): Action[AnyContent] = Action.async { request =>
+  def userMedia(userId: String, next_max_id: Option[String]): Action[AnyContent] = Action.async { request =>
     Future.successful(Ok(request.path))
   }
 
-  def userResolve(userId: Long, next_max_id: Option[String]): Action[AnyContent] = ???
+  def userResolve(userId: String, next_max_id: Option[String]): Action[AnyContent] = ???
 
-  def userFollowing(userId: Long, next_max_id: Option[String]): Action[AnyContent] = ???
+  def userFollowing(userId: String, next_max_id: Option[String]): Action[AnyContent] = ???
 
-  def userFollowers(userId: Long, next_max_id: Option[String]): Action[AnyContent] = ???
+  def userFollowers(userId: String, next_max_id: Option[String]): Action[AnyContent] = ???
 
 }
