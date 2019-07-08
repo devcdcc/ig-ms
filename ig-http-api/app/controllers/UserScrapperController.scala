@@ -1,50 +1,50 @@
 package controllers
 
-import com.github.devcdcc.services.queue.Publisher
+import com.github.devcdcc.services.queue.{Message, MessageValueConverter, Publisher, SimpleStringMessageValueConverter}
 import controllers.authentication.AccessTokenHelper
+import controllers.helps.PublisherHelper
 import javax.inject._
-import play.api.inject.ApplicationLifecycle
+import play.api.Configuration
 import play.api.mvc._
 
-import scala.concurrent.Future
+import scala.concurrent.ExecutionContext
+import scala.util.Failure
 
-/**
-  * This controller creates an `Action` to handle HTTP requests to the
-  * application's home page.
-  */
 @Singleton
-class UserScrapperController @Inject()(cc: ControllerComponents, publisher: Publisher[String, String])
+class UserScrapperController @Inject()(
+    config: Configuration,
+    cc: ControllerComponents,
+    publisher: Publisher[String, String])
     extends AbstractController(cc)
-    with AccessTokenHelper {
+    with AccessTokenHelper
+    with PublisherHelper {
 
-  /**
-    * Create an Action to render an HTML page.
-    *
-    * The configuration in the `routes` file means that this method
-    * will be called when the application receives a `GET` request with
-    * a path of `/`.
-    */
-  def index() = Action { implicit request: Request[AnyContent] =>
-    Unauthorized("")
-    Ok(views.html.index())
-  }
+  implicit private lazy val executionContext: ExecutionContext = defaultExecutionContext
+  implicit val simpleStringMessageValueConverter: MessageValueConverter[String, String] =
+    new SimpleStringMessageValueConverter
 
+  //TODO: Set message value on sendAsync method call.
   def scrapUser(userId: String) = Action.async { implicit request: Request[AnyContent] =>
     authenticatedPrivateSiteIdAsync { authenticatedUser =>
-      Future.successful(Ok(authenticatedUser.toString))
+      publisher
+        .sendAsync(Message(userScrapperTopic, ""))
+        .map(message => Ok(authenticatedUser.toString))
+        .recover {
+          case fail => InternalServerError(authenticatedUser.toString)
+        }
     }
 
   }
 
-  def scrapMedia(userId: String) = Action.async { implicit request: Request[AnyContent] =>
+  def scrapMedia(userId: String) = Action { implicit request: Request[AnyContent] =>
     ???
   }
 
-  def scrapFollowing(userId: String) = Action.async { implicit request: Request[AnyContent] =>
+  def scrapFollowing(userId: String) = Action { implicit request: Request[AnyContent] =>
     ???
   }
 
-  def scrapFollowers(userId: String) = Action.async { implicit request: Request[AnyContent] =>
+  def scrapFollowers(userId: String) = Action { implicit request: Request[AnyContent] =>
     ???
   }
 

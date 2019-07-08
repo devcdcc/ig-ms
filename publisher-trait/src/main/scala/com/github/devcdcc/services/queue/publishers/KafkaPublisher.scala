@@ -11,7 +11,7 @@ import com.typesafe.config.{Config, ConfigFactory}
 import javax.inject.Inject
 
 import scala.util.Try
-import org.apache.kafka.clients.producer.ProducerRecord
+import org.apache.kafka.clients.producer.{ProducerRecord, RecordMetadata}
 import org.apache.kafka.common.serialization.{Serializer, StringSerializer}
 
 import scala.collection.JavaConverters._
@@ -55,10 +55,18 @@ abstract class KafkaPublisher[K, V](
     */
   protected val producer: org.apache.kafka.clients.producer.Producer[K, V] = producerSettings.createKafkaProducer()
 
-  private def headerConverter(header: HeaderMessage) = new org.apache.kafka.common.header.Header {
+  private def mapHeader(header: HeaderMessage) = new org.apache.kafka.common.header.Header {
     override def key(): String        = header._1
     override def value(): Array[Byte] = header._2
   }
+
+  private def headerConverter(headers: Iterable[HeaderMessage]) =
+    if (headers == null)
+      null
+    else
+      headers
+        .map(mapHeader)
+        .asJavaCollection
 
   private def messageToProducerRecord[OV](message: Message[K, OV, V]): ProducerRecord[K, V] = message match {
     case Message(topic, _, key, partition, timesTamp, headers, _) =>
@@ -68,14 +76,29 @@ abstract class KafkaPublisher[K, V](
         timesTamp,
         key,
         message.convertValue,
-        if (headers == null)
-          null
-        else
-          headers
-            .map(headerConverter)
-            .asJavaCollection
+        headerConverter(headers)
       )
   }
+
+  /**
+    * Simple method that fills original message with the [[RecordMetadata]] retrieved from send message
+    * @param recordMetadata retrieved from kafka after send method
+    * @param message original sent message
+    * @tparam OV value type of message
+    * @note Also could be represented as
+    *       message
+    *         .withOffset(recordMetadata.offset())
+    *         .withPartition(recordMetadata.partition())
+    *         .withTimesStamp(recordMetadata.timestamp())
+    * @return a copy message with offset, partition and timestamp.
+    */
+  private def fillSentMessageWithRecordMetadata[OV](recordMetadata: RecordMetadata, message: Message[K, OV, V]) =
+    message
+      .copy(
+        offset = Option(recordMetadata.offset()),
+        partition = recordMetadata.partition(),
+        timesTamp = recordMetadata.timestamp()
+      )(message.converter)
 
   /**
     * Method used to send a async messages to kafka broker.
@@ -86,10 +109,9 @@ abstract class KafkaPublisher[K, V](
     *        protocol implementation.
     *        Actually kafka add the partition and offset message.
     */
-  def sendAsync[OV](message: Message[K, OV, V]): Future[Message[K, OV, V]] = Future {
-    val recordMetadata = producer.send(messageToProducerRecord(message)).get
-    message.withOffset(recordMetadata.offset()).withPartition(recordMetadata.partition())
-  }
+  def sendAsync[OV](message: Message[K, OV, V]): Future[Message[K, OV, V]] =
+    Future(producer.send(messageToProducerRecord(message)).get)
+      .map(fillSentMessageWithRecordMetadata(_, message))
 
   /**
     * Method used to send a sync message to kafka broker.
@@ -102,7 +124,7 @@ abstract class KafkaPublisher[K, V](
     */
   def send[OV](message: Message[K, OV, V]): Either[Throwable, Message[K, OV, V]] =
     Try(producer.send(messageToProducerRecord(message)).get)
-      .map(recordMetadata => message.withOffset(recordMetadata.offset()))
+      .map(fillSentMessageWithRecordMetadata(_, message))
       .toEither
 
   /**
