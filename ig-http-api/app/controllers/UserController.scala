@@ -3,6 +3,8 @@ package controllers
 import javax.inject._
 import play.api.mvc._
 
+import scala.concurrent.Future
+
 /**
   * This controller creates an `Action` to handle HTTP requests to the
   * application's home page.
@@ -25,12 +27,14 @@ class UserController @Inject()(cc: ControllerComponents) extends AbstractControl
     ???
   }
 
-  def userMedia(userId: Long): Action[AnyContent] = ???
+  def userMedia(userId: Long, next_max_id: Option[String]): Action[AnyContent] = Action.async { request =>
+    Future.successful(Ok(request.path))
+  }
 
-  def userResolve(userId: Long): Action[AnyContent] = ???
+  def userResolve(userId: Long, next_max_id: Option[String]): Action[AnyContent] = ???
 
-  def userFollowing(userId: Long): Action[AnyContent] = ???
+  def userFollowing(userId: Long, next_max_id: Option[String]): Action[AnyContent] = ???
 
-  def userFollowers(userId: Long): Action[AnyContent] = ???
+  def userFollowers(userId: Long, next_max_id: Option[String]): Action[AnyContent] = ???
 
 }

@@ -1,0 +1,3 @@
+object TestOnly extends App {
+  //
+}
