@@ -12,7 +12,7 @@ import scala.concurrent.Future
   * application's home page.
   */
 @Singleton
-class UserScrapperController @Inject()(cc: ControllerComponents, lifecycle: ApplicationLifecycle)
+class UserScrapperController @Inject()(cc: ControllerComponents, publisher: Publisher[String, String])
     extends AbstractController(cc) {
 
   /**
