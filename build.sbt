@@ -12,7 +12,8 @@ resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
   */
 libraryDependencies += guice
 // https://mvnrepository.com/artifact/com.typesafe.play/play-json
-libraryDependencies += "com.typesafe.play" %% "play-json" % "2.7.2"
+val playVersion = "2.7.3"
+libraryDependencies += "com.typesafe.play" %% "play-json" % playVersion
 
 val circeVersion = "0.11.0"
 // https://mvnrepository.com/artifact/org.http4s/http4s-circe
@@ -35,7 +36,7 @@ libraryDependencies ++= Seq(
 libraryDependencies += "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.1"
 
 val commonSettings = Seq(
-  organization := "com.github.devcdcc",
+  organization := "com.github.com.devcdcc",
   scalaVersion := projectScalaVersion,
   version := projectVersion,
   scalafmtOnCompile := true,
@@ -67,6 +68,12 @@ lazy val `publisher-trait` = (project in file("publisher-trait"))
   .aggregate(commons)
 lazy val `ig-http-api` = (project in file("ig-http-api"))
   .settings(commonSettings)
+  .settings(
+    libraryDependencies += "com.github.com.devcdcc" %% "publisher-trait"     % "0.1",
+    libraryDependencies += "org.apache.kafka"       %% "kafka-streams-scala" % "2.1.1",
+    libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play"  % "4.0.3" % Test,
+    libraryDependencies += ws
+  )
   .dependsOn(`publisher-trait`)
   .aggregate(`publisher-trait`)
   .enablePlugins(ScalafmtPlugin)

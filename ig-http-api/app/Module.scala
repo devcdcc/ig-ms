@@ -11,7 +11,7 @@ import play.inject.DelegateApplicationLifecycle
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-import scala.util.{Failure, Try}
+import scala.util.{Failure, Success, Try}
 
 class Module extends AbstractModule {
 
@@ -25,6 +25,7 @@ class Module extends AbstractModule {
       )
 
   private val kafkaInstance = new KafkaPublisherSimpleStringImplementation
+  private val logger        = play.api.Logger(Module.super.toString)
   override def configure(): Unit =
     bind(classOf[Publisher[String, String]])
       .toInstance(kafkaInstance)
@@ -34,13 +35,15 @@ class Module extends AbstractModule {
   lazy val system = ActorSystem.create("kafka-producer", config)
 
   sys.addShutdownHook {
-    Try(kafkaInstance.close).flatten {
-      case Failure(fail) => play.api.Logger(Module.super.toString)
-      case _             =>
+    kafkaInstance.close match {
+      case Left(fail) => play.api.Logger(Module.super.toString).error("Error trying to terminate actor system", fail)
+      case _          =>
     }
-    Try(Await.result(system.terminate(), Duration.create(60, TimeUnit.SECONDS))).flatten {
-      case Failure(fail) => play.api.Logger(Module.super.toString).error("Error trying to terminate actor system", fail)
-      case _             =>
+    val shutdownHook = Try(Await.result(system.terminate(), Duration.create(60, TimeUnit.SECONDS))).toEither
+    shutdownHook match {
+      case Left(failure) => logger.error("Error trying to terminate actor system", failure)
+      case Right(terminated) =>
+        logger.info(s"Actor system  for kafka publisher ends: ${terminated.existenceConfirmed}.")
     }
   }
 
