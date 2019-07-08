@@ -30,8 +30,9 @@ class UserScrapperController @Inject()(cc: ControllerComponents, publisher: Publ
   }
 
   def scrapUser(userId: String) = Action.async { implicit request: Request[AnyContent] =>
-    authenticatedPrivateSiteId
-      .fold(error => Future.successful(error), authenticatedUser => Future.successful(Ok(authenticatedUser.toString)))
+    authenticatedPrivateSiteIdAsync { authenticatedUser =>
+      Future.successful(Ok(authenticatedUser.toString))
+    }
 
   }
 

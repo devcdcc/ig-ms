@@ -26,9 +26,14 @@ class Module extends AbstractModule {
 
   private val kafkaInstance = new KafkaPublisherSimpleStringImplementation
   private val logger        = play.api.Logger(Module.super.toString)
-  override def configure(): Unit =
-    bind(classOf[Publisher[String, String]])
-      .toInstance(kafkaInstance)
+
+//  override def configure(): Unit =
+//    bind(classOf[Publisher[String, String]])
+//      .to(classOf[KafkaPublisherSimpleStringImplementation])
+//      .asEagerSingleton()
+
+  @Provides
+  def publisher: Publisher[String, String] = kafkaInstance
 
   //    ActorSystem.create("kafka-producer", ConfigFactory.parseFile(new java.io.File("config/application.conf")))
   lazy val config = ConfigFactory.load()
