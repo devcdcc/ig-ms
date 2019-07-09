@@ -3,15 +3,19 @@ package controllers
 import com.github.devcdcc.services.queue.Publisher
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.play.PlaySpec
+import play.api.Configuration
 import play.api.mvc._
 import play.api.test.Helpers._
 import play.api.test._
 
 class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
-  var controllerComponents = mock[ControllerComponents]
-  var publisher            = mock[Publisher[String, String]]
+  var controllerComponents         = mock[ControllerComponents]
+  var publisher                    = mock[Publisher[String, String]]
+  val configuration: Configuration = mock[Configuration]
+
   // subject
-  val subject = new UserScrapperController(Helpers.stubControllerComponents(), publisher)
+  val subject =
+    new UserScrapperController(config = configuration, cc = Helpers.stubControllerComponents(), publisher = publisher)
   "For scrapUser" should {
     "return unauthorized response when is not authenticated" in {
       //given

@@ -14,8 +14,6 @@ libraryDependencies += guice
 // https://mvnrepository.com/artifact/com.typesafe.play/play-json
 val playVersion = "2.7.3"
 libraryDependencies += "com.typesafe.play" %% "play-json" % playVersion
-
-val circeVersion = "0.11.0"
 // https://mvnrepository.com/artifact/org.http4s/http4s-circe
 val http4sVersion = "0.20.1"
 libraryDependencies ++= Seq(
@@ -35,6 +33,8 @@ libraryDependencies ++= Seq(
 // https://mvnrepository.com/artifact/com.typesafe.akka/akka-stream-kafka
 libraryDependencies += "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.1"
 
+val circeVersion = "0.11.0"
+
 val commonSettings = Seq(
   organization := "com.github.com.devcdcc",
   scalaVersion := projectScalaVersion,
@@ -49,7 +49,7 @@ val commonSettings = Seq(
   libraryDependencies += "org.scalactic" %% "scalactic"     % "3.0.5",
   libraryDependencies += "org.scalatest" %% "scalatest"     % "3.0.5" % Test,
   libraryDependencies += "org.mockito"   %% "mockito-scala" % "1.1.2" % Test
-)
+) // https://mvnrepository.com/artifact/com.dripower/play-circe
 
 lazy val commons = (project in file("commons"))
   .settings(commonSettings)
@@ -67,13 +67,14 @@ lazy val `publisher-trait` = (project in file("publisher-trait"))
   .dependsOn(commons)
   .aggregate(commons)
 lazy val `ig-http-api` = (project in file("ig-http-api"))
-  .settings(commonSettings)
   .settings(
     libraryDependencies += "com.github.com.devcdcc" %% "publisher-trait"     % "0.1",
     libraryDependencies += "org.apache.kafka"       %% "kafka-streams-scala" % "2.1.1",
     libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play"  % "4.0.3" % Test,
+    libraryDependencies += "com.dripower"           %% "play-circe"          % "2610.0",
     libraryDependencies += ws
   )
+  .settings(commonSettings)
   .dependsOn(`publisher-trait`)
   .aggregate(`publisher-trait`)
   .enablePlugins(ScalafmtPlugin)

@@ -6,19 +6,21 @@ import controllers.helps.PublisherHelper
 import javax.inject._
 import play.api.Configuration
 import play.api.mvc._
+import services.ig.wrapper.User
 
 import scala.concurrent.ExecutionContext
-import scala.util.Failure
+import io.circe.generic.auto._, io.circe.syntax._
+import services.util.RandomGenerator
 
 @Singleton
 class UserScrapperController @Inject()(
-    config: Configuration,
+    val config: Configuration,
     cc: ControllerComponents,
     publisher: Publisher[String, String])
     extends AbstractController(cc)
     with AccessTokenHelper
-    with PublisherHelper {
-
+    with PublisherHelper
+    with play.api.libs.circe.Circe {
   implicit private lazy val executionContext: ExecutionContext = defaultExecutionContext
   implicit val simpleStringMessageValueConverter: MessageValueConverter[String, String] =
     new SimpleStringMessageValueConverter
@@ -27,10 +29,13 @@ class UserScrapperController @Inject()(
   def scrapUser(userId: String) = Action.async { implicit request: Request[AnyContent] =>
     authenticatedPrivateSiteIdAsync { authenticatedUser =>
       publisher
-        .sendAsync(Message(userScrapperTopic, ""))
-        .map(message => Ok(authenticatedUser.toString))
+        .sendAsync(
+          Message(userScrapperTopic, User(userId = userId, id = Option(RandomGenerator.generate())).asJson.noSpaces)
+        )
+        .map(message => Ok(message.asJson))
         .recover {
-          case fail => InternalServerError(authenticatedUser.toString)
+          case fail =>
+            InternalServerError(fail.getMessage)
         }
     }
 

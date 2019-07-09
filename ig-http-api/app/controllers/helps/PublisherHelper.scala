@@ -1,8 +1,11 @@
 package controllers.helps
 
+import play.api.Configuration
+
 trait PublisherHelper {
-  val userScrapperTopic          = "scrapper.user"
-  val userMediaScrapperTopic     = "scrapper.userMedia"
-  val userFollowingScrapperTopic = "scrapper.userFollowing"
-  val userFollowersScrapperTopic = "scrapper.userFollowers"
+  def config: Configuration
+  val userScrapperTopic          = config.get[String]("topics.scrapper.user")
+  val userMediaScrapperTopic     = config.get[String]("topics.scrapper.userMedia")
+  val userFollowingScrapperTopic = config.get[String]("topics.scrapper.userFollowing")
+  val userFollowersScrapperTopic = config.get[String]("topics.scrapper.userFollowers")
 }
