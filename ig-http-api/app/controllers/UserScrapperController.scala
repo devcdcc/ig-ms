@@ -9,7 +9,7 @@ import com.github.devcdcc.services.queue.{
 }
 import controllers.authentication.AccessTokenHelper
 import controllers.helps.PublisherHelper
-import io.circe.{Decoder, Encoder, Json, Printer}
+import io.circe.Json
 import javax.inject._
 import play.api.{Configuration, Logging}
 import play.api.mvc._

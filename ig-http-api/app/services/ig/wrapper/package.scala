@@ -1,13 +1,6 @@
 package services.ig
 
-import play.api.libs.ws.{WSClient, WSRequest, WSResponse}
-import play.api.mvc.{AnyContent, Request}
-
-import scala.concurrent.Future
-
 package object wrapper {
-
-  import paths._
 
   trait IGRequest {
     def next_max_id: Option[String]

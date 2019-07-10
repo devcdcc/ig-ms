@@ -3,7 +3,6 @@ package controllers
 import com.github.devcdcc.services.queue.{CirceToStringMessageValueConverter, Message, MessageValueConverter, Publisher}
 import io.circe.Json
 import io.circe.generic.auto._
-import io.circe.{Decoder, Encoder, Json, Printer}
 import io.circe.syntax._
 import org.mockito.Mockito.when
 import org.scalatestplus.mockito.MockitoSugar
@@ -12,8 +11,7 @@ import play.api.Configuration
 import play.api.mvc._
 import play.api.test.Helpers._
 import play.api.test._
-import play.api.libs.circe._
-import services.ig.wrapper.User
+import services.ig.wrapper._
 import services.util.RandomGenerator
 import AuthenticationHelper._
 import scala.concurrent.Future
