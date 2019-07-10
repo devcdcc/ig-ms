@@ -10,16 +10,16 @@ package object wrapper {
   import paths._
 
   trait IGRequest {
-    def patternMatch: String
-    def matchRequest(implicit request: Request[AnyContent]): Boolean = request.path.matches(patternMatch)
-    def doCall(implicit ws: WSClient): WSRequest
+    def next_max_id: Option[String]
+    def hasNext: Option[Boolean]
+    def id: Option[String]
   }
-  case class User(userId: String) extends IGRequest {
-
-    override def patternMatch: String = userPath
-
-    override def doCall(implicit ws: WSClient): WSRequest = ws.url(nodeURL + userId)
-  }
+  case class User(
+      userId: String,
+      next_max_id: Option[String] = None,
+      hasNext: Option[Boolean] = None,
+      id: Option[String] = None)
+      extends IGRequest
 
   private object paths {
     val nodeURL           = "localhost:3000/"

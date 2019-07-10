@@ -1,5 +1,7 @@
 package com.github.devcdcc.services
 
+import io.circe.Json
+
 package object queue {
 
   type HeaderMessage = (String, Array[Byte])
@@ -11,11 +13,13 @@ package object queue {
       timesTamp: java.lang.Long = null,
       headers: Iterable[HeaderMessage] = null,
       offset: Option[Long] = None
-    )(implicit converter: MessageValueConverter[OV, V]) {
+    )(implicit _converter: MessageValueConverter[OV, V]) {
 
-    def convertValue: V                                  = converter.valueConvert(this.value)
-    def withOffset(offset: Long): Message[K, OV, V]      = this.copy(offset = Option(offset))
-    def withPartition(partition: Int): Message[K, OV, V] = this.copy(partition = partition)
+    def convertValue: V                                    = converter.valueConvert(this.value)
+    def withOffset(offset: Long): Message[K, OV, V]        = this.copy(offset = Option(offset))
+    def withPartition(partition: Int): Message[K, OV, V]   = this.copy(partition = partition)
+    def withTimesStamp(timesTamp: Long): Message[K, OV, V] = this.copy(timesTamp = timesTamp)
+    def converter: MessageValueConverter[OV, V]            = _converter
   }
 
   /**
@@ -38,6 +42,10 @@ package object queue {
 
   class SimpleStringMessageValueConverter extends MessageValueConverter[String, String] {
     @inline override def valueConvert(value: String): String = value
+  }
+
+  class CirceToStringMessageValueConverter extends MessageValueConverter[Json, String] {
+    @inline override def valueConvert(value: Json): String = value.noSpaces
   }
 
 }

@@ -1,50 +1,83 @@
 package controllers
 
-import com.github.devcdcc.services.queue.Publisher
+import com.github.devcdcc.services.queue.{
+  CirceToStringMessageValueConverter,
+  Message,
+  MessageValueConverter,
+  Publisher,
+  SimpleStringMessageValueConverter
+}
 import controllers.authentication.AccessTokenHelper
+import controllers.helps.PublisherHelper
+import io.circe.{Decoder, Encoder, Json, Printer}
 import javax.inject._
-import play.api.inject.ApplicationLifecycle
+import play.api.{Configuration, Logging}
 import play.api.mvc._
+import services.ig.wrapper.User
 
-import scala.concurrent.Future
+import io.circe.generic.auto._
+import io.circe.syntax._
+import org.slf4j.MDC
+import scala.concurrent.{ExecutionContext, Future}
+import services.util.RandomGenerator
+import play.api.libs.circe._
 
-/**
-  * This controller creates an `Action` to handle HTTP requests to the
-  * application's home page.
-  */
 @Singleton
-class UserScrapperController @Inject()(cc: ControllerComponents, publisher: Publisher[String, String])
+class UserScrapperController @Inject()(
+    val config: Configuration,
+    randomService: RandomGenerator,
+    cc: ControllerComponents,
+    publisher: Publisher[String, String])
     extends AbstractController(cc)
-    with AccessTokenHelper {
+    with AccessTokenHelper
+    with PublisherHelper
+    with Logging
+    with Circe {
+  implicit private lazy val executionContext: ExecutionContext = defaultExecutionContext
+//  implicit val printer: Printer                                = Printer.noSpaces.copy(dropNullValues = true)
+  implicit val simpleStringMessageValueConverter: MessageValueConverter[Json, String] =
+    new CirceToStringMessageValueConverter
 
-  /**
-    * Create an Action to render an HTML page.
-    *
-    * The configuration in the `routes` file means that this method
-    * will be called when the application receives a `GET` request with
-    * a path of `/`.
-    */
-  def index() = Action { implicit request: Request[AnyContent] =>
-    Unauthorized("")
-    Ok(views.html.index())
+  def setMDCProgress(tx: Option[String] = None) = {
+    MDC.clear()
+    tx.foreach(tx => MDC.put("tx", tx))
   }
 
-  def scrapUser(userId: String) = Action.async { implicit request: Request[AnyContent] =>
+  def addStatusAsText(json: Json, status: String, fieldName: String = "status") =
+    (json deepMerge (fieldName, status).asJson).toString()
+
+  //TODO: Set message value on sendAsync method call.
+  def scrapUser(userId: String) = Action.async { implicit request =>
     authenticatedPrivateSiteIdAsync { authenticatedUser =>
-      Future.successful(Ok(authenticatedUser.toString))
+      val user = User(userId = userId, id = Option(randomService.generate()))
+      setMDCProgress(user.id)
+      logger.info(addStatusAsText(user.asJson, "start"))
+      publisher
+        .sendAsync(
+          Message(userScrapperTopic, user.asJson)
+        )
+        .map(message => {
+          logger.info(addStatusAsText(user.asJson, "enqueued"))
+          Accepted(message.value)
+        })
+        .recoverWith {
+          case fail =>
+            logger.info(addStatusAsText(user.asJson, "error"))
+            logger.error("Error on scrapping user.", fail)
+            Future.successful(InternalServerError(user.asJson))
+        }
     }
-
   }
 
-  def scrapMedia(userId: String) = Action.async { implicit request: Request[AnyContent] =>
+  def scrapMedia(userId: String) = Action { implicit request: Request[AnyContent] =>
     ???
   }
 
-  def scrapFollowing(userId: String) = Action.async { implicit request: Request[AnyContent] =>
+  def scrapFollowing(userId: String) = Action { implicit request: Request[AnyContent] =>
     ???
   }
 
-  def scrapFollowers(userId: String) = Action.async { implicit request: Request[AnyContent] =>
+  def scrapFollowers(userId: String) = Action { implicit request: Request[AnyContent] =>
     ???
   }
 
