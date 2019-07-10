@@ -16,6 +16,7 @@ package object wrapper {
   }
   case class User(
       userId: String,
+      recursive: Option[Boolean] = None,
       next_max_id: Option[String] = None,
       hasNext: Option[Boolean] = None,
       id: Option[String] = None)

@@ -38,15 +38,14 @@ class UserScrapperController @Inject()(
   implicit val simpleStringMessageValueConverter: MessageValueConverter[Json, String] =
     new CirceToStringMessageValueConverter
 
-  def setMDCProgress(tx: Option[String] = None) = {
+  private def setMDCProgress(tx: Option[String] = None) = {
     MDC.clear()
     tx.foreach(tx => MDC.put("tx", tx))
   }
 
-  def addStatusAsText(json: Json, status: String, fieldName: String = "status") =
+  private def addStatusAsText(json: Json, status: String, fieldName: String = "status") =
     (json deepMerge (fieldName, status).asJson).toString()
 
-  //TODO: Set message value on sendAsync method call.
   def scrapUser(userId: String) = Action.async { implicit request =>
     authenticatedPrivateSiteIdAsync { authenticatedUser =>
       val user = User(userId = userId, id = Option(randomService.generate()))
