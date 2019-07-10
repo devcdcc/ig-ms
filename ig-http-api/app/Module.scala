@@ -8,6 +8,7 @@ import com.typesafe.config.{Config, ConfigFactory}
 import javax.inject.Inject
 import org.apache.kafka.common.serialization.{Serializer, StringSerializer}
 import play.inject.DelegateApplicationLifecycle
+import services.util.{RandomGenerator, RandomGeneratorImpl}
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
@@ -27,10 +28,10 @@ class Module extends AbstractModule {
   private val kafkaInstance = new KafkaPublisherSimpleStringImplementation
   private val logger        = play.api.Logger(Module.super.toString)
 
-//  override def configure(): Unit =
-//    bind(classOf[Publisher[String, String]])
-//      .to(classOf[KafkaPublisherSimpleStringImplementation])
-//      .asEagerSingleton()
+  override def configure(): Unit =
+    bind(classOf[RandomGenerator])
+      .to(classOf[RandomGeneratorImpl])
+      .asEagerSingleton()
 
   @Provides
   def publisher: Publisher[String, String] = kafkaInstance

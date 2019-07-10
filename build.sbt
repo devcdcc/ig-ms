@@ -71,7 +71,7 @@ lazy val `ig-http-api` = (project in file("ig-http-api"))
     libraryDependencies += "com.github.com.devcdcc" %% "publisher-trait"     % "0.1",
     libraryDependencies += "org.apache.kafka"       %% "kafka-streams-scala" % "2.1.1",
     libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play"  % "4.0.3" % Test,
-    libraryDependencies += "com.dripower"           %% "play-circe"          % "2610.0",
+    libraryDependencies += "com.dripower"           %% "play-circe"          % "2711.0",
     libraryDependencies += ws
   )
   .settings(commonSettings)

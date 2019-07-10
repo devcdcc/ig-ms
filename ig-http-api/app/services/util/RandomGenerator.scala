@@ -2,7 +2,13 @@ package services.util
 import java.security.SecureRandom
 import java.util.{Base64, Calendar};
 
-object RandomGenerator {
+trait RandomGenerator {
+
+  def generate(): String
+
+}
+
+class RandomGeneratorImpl extends RandomGenerator {
   val random: SecureRandom    = new SecureRandom()
   val encoder: Base64.Encoder = Base64.getUrlEncoder.withoutPadding()
 

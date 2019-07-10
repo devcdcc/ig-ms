@@ -1,5 +1,7 @@
 package com.github.devcdcc.services
 
+import io.circe.Json
+
 package object queue {
 
   type HeaderMessage = (String, Array[Byte])
@@ -40,6 +42,10 @@ package object queue {
 
   class SimpleStringMessageValueConverter extends MessageValueConverter[String, String] {
     @inline override def valueConvert(value: String): String = value
+  }
+
+  class CirceToStringMessageValueConverter extends MessageValueConverter[Json, String] {
+    @inline override def valueConvert(value: Json): String = value.noSpaces
   }
 
 }

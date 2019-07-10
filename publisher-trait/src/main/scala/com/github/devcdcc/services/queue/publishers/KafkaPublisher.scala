@@ -94,11 +94,9 @@ abstract class KafkaPublisher[K, V](
     */
   private def fillSentMessageWithRecordMetadata[OV](recordMetadata: RecordMetadata, message: Message[K, OV, V]) =
     message
-      .copy(
-        offset = Option(recordMetadata.offset()),
-        partition = recordMetadata.partition(),
-        timesTamp = recordMetadata.timestamp()
-      )(message.converter)
+      .withOffset(recordMetadata.offset())
+      .withPartition(recordMetadata.partition())
+      .withTimesStamp(recordMetadata.timestamp())
 
   /**
     * Method used to send a async messages to kafka broker.
@@ -111,7 +109,7 @@ abstract class KafkaPublisher[K, V](
     */
   def sendAsync[OV](message: Message[K, OV, V]): Future[Message[K, OV, V]] =
     Future(producer.send(messageToProducerRecord(message)).get)
-      .map(fillSentMessageWithRecordMetadata(_, message))
+      .map(recordMetadata => fillSentMessageWithRecordMetadata(recordMetadata, message))
 
   /**
     * Method used to send a sync message to kafka broker.
@@ -124,7 +122,7 @@ abstract class KafkaPublisher[K, V](
     */
   def send[OV](message: Message[K, OV, V]): Either[Throwable, Message[K, OV, V]] =
     Try(producer.send(messageToProducerRecord(message)).get)
-      .map(fillSentMessageWithRecordMetadata(_, message))
+      .map(recordMetadata => fillSentMessageWithRecordMetadata(recordMetadata, message))
       .toEither
 
   /**
