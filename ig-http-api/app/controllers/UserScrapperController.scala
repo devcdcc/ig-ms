@@ -1,12 +1,6 @@
 package controllers
 
-import com.github.devcdcc.services.queue.{
-  CirceToStringMessageValueConverter,
-  Message,
-  MessageValueConverter,
-  Publisher,
-  SimpleStringMessageValueConverter
-}
+import com.github.devcdcc.services.queue.{CirceToStringMessageValueConverter, Message, MessageValueConverter, Publisher}
 import controllers.authentication.AccessTokenHelper
 import controllers.helps.PublisherHelper
 import io.circe.Json
