@@ -7,7 +7,7 @@ import io.circe.Json
 import javax.inject._
 import play.api.{Configuration, Logging}
 import play.api.mvc._
-import services.ig.wrapper.User
+import services.ig.wrapper.UserRequest
 
 import io.circe.generic.auto._
 import io.circe.syntax._
@@ -32,34 +32,49 @@ class UserScrapperController @Inject()(
   implicit val simpleStringMessageValueConverter: MessageValueConverter[Json, String] =
     new CirceToStringMessageValueConverter
 
-  private def setMDCProgress(tx: Option[String] = None) = {
+  final private val APP_ID = config.get[String]("app.id")
+
+  private def setMDCProgress(tx: Option[String] = None)(implicit request: Request[AnyContent]) = {
     MDC.clear()
     tx.foreach(tx => MDC.put("tx", tx))
+    MDC.put("path", request.path)
+    MDC.put("app.id", APP_ID)
   }
 
   private def addStatusAsText(json: Json, status: String, fieldName: String = "status") =
     (json deepMerge (fieldName, status).asJson).toString()
 
   def scrapUser(userId: String) = Action.async { implicit request =>
-    authenticatedPrivateSiteIdAsync { authenticatedUser =>
-      val user = User(userId = userId, id = Option(randomService.generate()))
-      setMDCProgress(user.id)
-      logger.info(addStatusAsText(user.asJson, "start"))
-      publisher
-        .sendAsync(
-          Message(userScrapperTopic, user.asJson)
-        )
-        .map(message => {
-          logger.info(addStatusAsText(user.asJson, "enqueued"))
-          Accepted(message.value)
-        })
-        .recoverWith {
-          case fail =>
-            logger.info(addStatusAsText(user.asJson, "error"))
-            logger.error("Error on scrapping user.", fail)
-            Future.successful(InternalServerError(user.asJson))
-        }
-    }
+    val destinationTopic = userScrapperTopic
+    authenticatedPrivateSiteIdAsync(_ => basicRequestMaker(userId, destinationTopic))
+  }
+
+  protected def basicRequestMaker(userId: String, destinationTopic: String)(implicit request: Request[AnyContent]) = {
+    implicit val user = UserRequest(userId = userId, id = Option(randomService.generate()))
+    setMDCProgress(user.id)
+    logger.info(addStatusAsText(user.asJson, "start"))
+    val future = publisher.sendAsync(Message(destinationTopic, user.asJson))
+    futureToWebResponse(future)
+  }
+
+  protected def futureToWebResponse(response: Future[Message[String, Json, String]])(implicit user: UserRequest) =
+    response
+      .map(messageToWebResponse)
+      .recoverWith(recoverToWebResponseWrapper)
+
+  protected def recoverToWebResponseWrapper(implicit user: UserRequest): PartialFunction[Throwable, Future[Result]] = {
+    case fail: Throwable => Future.successful(recoverToWebResponse(fail))
+  }
+
+  protected def recoverToWebResponse(fail: Throwable)(implicit user: UserRequest) = {
+    logger.info(addStatusAsText(user.asJson, "error"))
+    logger.error("Error on scrapping user.", fail)
+    InternalServerError(user.asJson)
+  }
+
+  protected def messageToWebResponse(message: Message[String, Json, String]) = {
+    logger.info(addStatusAsText(message.value, "enqueued"))
+    Accepted(message.value)
   }
 
   def scrapMedia(userId: String) = Action { implicit request: Request[AnyContent] =>

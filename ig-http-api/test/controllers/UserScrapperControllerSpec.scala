@@ -49,7 +49,7 @@ class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
       val url    = s"/user/$userId"
       implicit val simpleStringMessageValueConverter: MessageValueConverter[Json, String] =
         new CirceToStringMessageValueConverter
-      val user                                   = User(userId = userId, id = Option(random.generate()))
+      val user                                   = UserRequest(userId = userId, id = Option(random.generate()))
       val message: Message[String, Json, String] = Message(subject.userScrapperTopic, user.asJson)
       val expected                               = user.asJson.noSpaces
 

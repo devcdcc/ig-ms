@@ -7,7 +7,7 @@ package object wrapper {
     def hasNext: Option[Boolean]
     def id: Option[String]
   }
-  case class User(
+  case class UserRequest(
       userId: String,
       recursive: Option[Boolean] = None,
       next_max_id: Option[String] = None,
