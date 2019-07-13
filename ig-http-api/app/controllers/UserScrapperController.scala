@@ -20,8 +20,9 @@ class UserScrapperController @Inject()(
     with TopicsHelper {
 //  implicit val printer: Printer = Printer.noSpaces.copy(dropNullValues = true)
 
-  def generalScrapper(userId: String, destinationTopic: String): Action[AnyContent] = Action.async { implicit request =>
-    authenticatedPrivateSiteIdAsync(_ => basicRequestMaker(userId, destinationTopic))
+  private def generalScrapper(userId: String, destinationTopic: String): Action[AnyContent] = Action.async {
+    implicit request =>
+      authenticatedPrivateSiteIdAsync(_ => basicRequestMaker(userId, destinationTopic))
   }
 
   def scrapUser(userId: String): Action[AnyContent] = generalScrapper(userId, userScrapperTopic)
