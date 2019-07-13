@@ -1,3 +1,4 @@
+import java.time.Duration
 import java.util.Properties
 import java.util.concurrent.TimeUnit
 
@@ -30,6 +31,6 @@ object WordCountApplication extends App {
   streams.start()
 
   sys.ShutdownHookThread {
-    streams.close(10, TimeUnit.SECONDS)
+    streams.close(Duration.ofSeconds(10))
   }
 }
