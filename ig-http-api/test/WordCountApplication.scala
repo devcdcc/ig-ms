@@ -1,6 +1,5 @@
 import java.time.Duration
 import java.util.Properties
-import java.util.concurrent.TimeUnit
 
 import org.apache.kafka.streams.kstream.Materialized
 import org.apache.kafka.streams.scala.ImplicitConversions._

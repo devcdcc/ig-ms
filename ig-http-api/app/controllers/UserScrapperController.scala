@@ -1,20 +1,13 @@
 package controllers
 
-import com.github.devcdcc.services.queue.{CirceToStringMessageValueConverter, Message, MessageValueConverter, Publisher}
+import com.github.devcdcc.services.queue.Publisher
 import controllers.authentication.AccessTokenHelper
 import controllers.helps.{PublisherHelper, TopicsHelper}
-import io.circe.{Json, Printer}
 import javax.inject._
-import play.api.{Configuration, Logging}
+import play.api.Configuration
 import play.api.mvc._
-import services.ig.wrapper.UserRequest
-import io.circe.generic.auto._
-import io.circe.syntax._
-import org.slf4j.MDC
 
-import scala.concurrent.{ExecutionContext, Future}
 import services.util.RandomGenerator
-import play.api.libs.circe._
 
 @Singleton
 class UserScrapperController @Inject()(

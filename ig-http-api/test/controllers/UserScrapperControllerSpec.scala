@@ -17,10 +17,10 @@ import AuthenticationHelper._
 import scala.concurrent.Future
 
 class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
-  var controllerComponents         = mock[ControllerComponents]
-  var publisher                    = mock[Publisher[String, String]]
-  val configuration: Configuration = mock[Configuration]
-  val random: RandomGenerator      = mock[RandomGenerator]
+  var controllerComponents: ControllerComponents = mock[ControllerComponents]
+  var publisher: Publisher[String, String]       = mock[Publisher[String, String]]
+  val configuration: Configuration               = mock[Configuration]
+  val random: RandomGenerator                    = mock[RandomGenerator]
 
   // subject
   val subject =
