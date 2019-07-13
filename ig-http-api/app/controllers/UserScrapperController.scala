@@ -3,7 +3,7 @@ package controllers
 import com.github.devcdcc.services.queue.{CirceToStringMessageValueConverter, Message, MessageValueConverter, Publisher}
 import controllers.authentication.AccessTokenHelper
 import controllers.helps.{PublisherHelper, TopicsHelper}
-import io.circe.Json
+import io.circe.{Json, Printer}
 import javax.inject._
 import play.api.{Configuration, Logging}
 import play.api.mvc._
@@ -25,23 +25,18 @@ class UserScrapperController @Inject()(
     extends PublisherHelper(config, cc, randomService, publisher)
     with AccessTokenHelper
     with TopicsHelper {
-//  implicit val printer: Printer                                = Printer.noSpaces.copy(dropNullValues = true)
+//  implicit val printer: Printer = Printer.noSpaces.copy(dropNullValues = true)
 
-  def scrapUser(userId: String) = Action.async { implicit request =>
-    val destinationTopic = userScrapperTopic
+  def generalScrapper(userId: String, destinationTopic: String) = Action.async { implicit request =>
     authenticatedPrivateSiteIdAsync(_ => basicRequestMaker(userId, destinationTopic))
   }
 
-  def scrapMedia(userId: String) = Action { implicit request: Request[AnyContent] =>
-    ???
-  }
+  def scrapUser(userId: String) = generalScrapper(userId, userScrapperTopic)
 
-  def scrapFollowing(userId: String) = Action { implicit request: Request[AnyContent] =>
-    ???
-  }
+  def scrapMedia(userId: String) = generalScrapper(userId, userMediaScrapperTopic)
 
-  def scrapFollowers(userId: String) = Action { implicit request: Request[AnyContent] =>
-    ???
-  }
+  def scrapFollowing(userId: String) = generalScrapper(userId, userFollowingScrapperTopic)
+
+  def scrapFollowers(userId: String) = generalScrapper(userId, userFollowersScrapperTopic)
 
 }
