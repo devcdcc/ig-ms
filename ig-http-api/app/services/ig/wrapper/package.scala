@@ -1,21 +1,15 @@
 package services.ig
 
-import play.api.libs.ws.{WSClient, WSRequest, WSResponse}
-import play.api.mvc.{AnyContent, Request}
-
-import scala.concurrent.Future
-
 package object wrapper {
-
-  import paths._
 
   trait IGRequest {
     def next_max_id: Option[String]
     def hasNext: Option[Boolean]
     def id: Option[String]
   }
-  case class User(
+  case class UserRequest(
       userId: String,
+      recursive: Option[Boolean] = None,
       next_max_id: Option[String] = None,
       hasNext: Option[Boolean] = None,
       id: Option[String] = None)
