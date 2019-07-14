@@ -18,7 +18,7 @@ package object wrapper {
       id: Option[String] = None)
       extends QueueRequest
 
-  implicit class PathHelper(request: QueueRequest) {
+  implicit class PathHelper[T <: QueueRequest](request: T) {
     private val nodeURL = "localhost:3000/"
     private def userId  = request.userId
 
@@ -28,5 +28,4 @@ package object wrapper {
     final def userFollowingPath: String = nodeURL + s"/user/$userId/following"
     final def userFollowersPath: String = nodeURL + s"/user/$userId/followers"
   }
-
 }
