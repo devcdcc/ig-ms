@@ -2,7 +2,7 @@ package com.github.devcdcc.crawler
 
 package object wrapper {
 
-  trait IGRequest {
+  trait QueueRequest {
     def userId: String
     def next_max_id: Option[String]
     def hasNext: Option[Boolean]
@@ -16,9 +16,9 @@ package object wrapper {
       next_max_id: Option[String] = None,
       hasNext: Option[Boolean] = None,
       id: Option[String] = None)
-      extends IGRequest
+      extends QueueRequest
 
-  implicit class PathHelper(request: IGRequest) {
+  implicit class PathHelper(request: QueueRequest) {
     private val nodeURL = "localhost:3000/"
     private def userId  = request.userId
 
