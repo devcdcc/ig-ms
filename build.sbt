@@ -14,15 +14,22 @@ libraryDependencies += guice
 // https://mvnrepository.com/artifact/com.typesafe.play/play-json
 val playVersion = "2.7.3"
 libraryDependencies += "com.typesafe.play" %% "play-json" % playVersion
-// https://mvnrepository.com/artifact/org.http4s/http4s-circe
-val http4sVersion = "0.20.1"
-libraryDependencies ++= Seq(
-  "org.http4s" %% "http4s-dsl"          % http4sVersion,
-  "org.http4s" %% "http4s-blaze-server" % http4sVersion,
-  "org.http4s" %% "http4s-blaze-client" % http4sVersion,
-  "org.http4s" %% "http4s-circe"        % http4sVersion
-)
 
+def http4sLibraries = {
+  // https://mvnrepository.com/artifact/org.http4s/http4s-circe
+  val http4sVersion = "0.20.1"
+  Seq(
+    "org.http4s" %% "http4s-dsl"          % http4sVersion,
+    "org.http4s" %% "http4s-blaze-client" % http4sVersion,
+    "org.http4s" %% "http4s-circe"        % http4sVersion
+  )
+}
+//libraryDependencies ++= Seq(
+//  "org.http4s" %% "http4s-dsl"          % http4sVersion,
+//  "org.http4s" %% "http4s-blaze-client" % http4sVersion,
+//  "org.http4s" %% "http4s-circe"        % http4sVersion
+//)
+//libraryDependencies ++= httpsLibraries
 libraryDependencies += "io.cucumber" %% "cucumber-scala" % "4.3.1" % Test
 
 val akkaVersion = "2.5.23"
@@ -33,19 +40,22 @@ libraryDependencies ++= Seq(
 // https://mvnrepository.com/artifact/com.typesafe.akka/akka-stream-kafka
 libraryDependencies += "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.1"
 
-val circeVersion = "0.11.0"
+def circeLibraries = {
+  val circeVersion = "0.11.0"
+  Seq(
+    "io.circe" %% "circe-core",
+    "io.circe" %% "circe-generic",
+    "io.circe" %% "circe-parser",
+    "io.circe" %% "circe-optics"
+  ).map(_ % circeVersion)
+}
 
 val commonSettings = Seq(
   organization := "com.github.com.devcdcc",
   scalaVersion := projectScalaVersion,
   version := projectVersion,
   scalafmtOnCompile := true,
-  libraryDependencies ++= Seq(
-    "io.circe" %% "circe-core",
-    "io.circe" %% "circe-generic",
-    "io.circe" %% "circe-parser",
-    "io.circe" %% "circe-optics"
-  ).map(_ % circeVersion),
+  libraryDependencies ++= circeLibraries,
   libraryDependencies += "org.scalactic" %% "scalactic"     % "3.0.5",
   libraryDependencies += "org.scalatest" %% "scalatest"     % "3.0.5" % Test,
   libraryDependencies += "org.mockito"   %% "mockito-scala" % "1.1.2" % Test
@@ -80,8 +90,10 @@ lazy val `ig-http-api` = (project in file("ig-http-api"))
   .enablePlugins(ScalafmtPlugin)
   .enablePlugins(PlayScala)
 
+addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 lazy val `ig-crawler` = (project in file("ig-crawler"))
-  .settings(commonSettings)
+  .settings(commonSettings, addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full))
+  .settings(libraryDependencies ++= (http4sLibraries ++ circeLibraries))
   .enablePlugins(ScalafmtPlugin)
 
 lazy val root = (project in file("."))
