@@ -1,4 +1,4 @@
-package controllers.helps
+package controllers.helpers
 
 import play.api.mvc.Results._
 import com.github.devcdcc.services.queue.{CirceToStringMessageValueConverter, Message, MessageValueConverter, Publisher}

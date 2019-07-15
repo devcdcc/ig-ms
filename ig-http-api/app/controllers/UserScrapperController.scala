@@ -2,7 +2,7 @@ package controllers
 
 import com.github.devcdcc.services.queue.Publisher
 import controllers.authentication.AccessTokenHelper
-import controllers.helps.{PublisherHelper, TopicsHelper}
+import controllers.helpers.{PublisherHelper, TopicsHelper}
 import javax.inject._
 import play.api.Configuration
 import play.api.mvc._

@@ -1,5 +1,7 @@
 package com.github.devcdcc.crawler
 
+import io.circe.Json
+
 package object wrapper {
 
   trait QueueRequest {
@@ -7,6 +9,7 @@ package object wrapper {
     def next_max_id: Option[String]
     def hasNext: Option[Boolean]
     def id: Option[String]
+    def filter: Option[io.circe.Json]
 
   }
 
@@ -15,7 +18,8 @@ package object wrapper {
       recursive: Option[Boolean] = None,
       next_max_id: Option[String] = None,
       hasNext: Option[Boolean] = None,
-      id: Option[String] = None)
+      id: Option[String] = None,
+      filter: Option[Json] = None)
       extends QueueRequest
 
   implicit class PathHelper[T <: QueueRequest](request: T) {

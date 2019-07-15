@@ -15,15 +15,15 @@ libraryDependencies += guice
 val playVersion = "2.7.3"
 libraryDependencies += "com.typesafe.play" %% "play-json" % playVersion
 
-def http4sLibraries = {
-  // https://mvnrepository.com/artifact/org.http4s/http4s-circe
-  val http4sVersion = "0.20.1"
+val http4sVersion   = "0.20.1"
+
+def http4sLibraries =
   Seq(
     "org.http4s" %% "http4s-dsl"          % http4sVersion,
     "org.http4s" %% "http4s-blaze-client" % http4sVersion,
-    "org.http4s" %% "http4s-circe"        % http4sVersion
-  )
-}
+"org.http4s" %% "http4s-circe"        % http4sVersion
+)
+  // https://mvnrepository.com/artifact/org.http4s/http4s-circe
 //libraryDependencies ++= Seq(
 //  "org.http4s" %% "http4s-dsl"          % http4sVersion,
 //  "org.http4s" %% "http4s-blaze-client" % http4sVersion,
@@ -40,15 +40,15 @@ libraryDependencies ++= Seq(
 // https://mvnrepository.com/artifact/com.typesafe.akka/akka-stream-kafka
 libraryDependencies += "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.1"
 
-def circeLibraries = {
-  val circeVersion = "0.11.0"
+val circeVersion = "0.11.0"
+
+def circeLibraries =
   Seq(
     "io.circe" %% "circe-core",
     "io.circe" %% "circe-generic",
     "io.circe" %% "circe-parser",
     "io.circe" %% "circe-optics"
   ).map(_ % circeVersion)
-}
 
 val commonSettings = Seq(
   organization := "com.github.com.devcdcc",
@@ -56,6 +56,7 @@ val commonSettings = Seq(
   version := projectVersion,
   scalafmtOnCompile := true,
   libraryDependencies ++= circeLibraries,
+  libraryDependencies += "com.typesafe" % "config" % "1.3.3",
   libraryDependencies += "org.scalactic" %% "scalactic"     % "3.0.5",
   libraryDependencies += "org.scalatest" %% "scalatest"     % "3.0.5" % Test,
   libraryDependencies += "org.mockito"   %% "mockito-scala" % "1.1.2" % Test
@@ -92,8 +93,12 @@ lazy val `ig-http-api` = (project in file("ig-http-api"))
 
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 lazy val `ig-crawler` = (project in file("ig-crawler"))
-  .settings(commonSettings, addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full))
-  .settings(libraryDependencies ++= (http4sLibraries ++ circeLibraries))
+  .settings(
+    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.1.1",
+    libraryDependencies ++= (http4sLibraries ++ circeLibraries),
+    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
+  )
+  .settings(commonSettings)
   .enablePlugins(ScalafmtPlugin)
 
 lazy val root = (project in file("."))
