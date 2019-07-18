@@ -8,7 +8,8 @@ package object wrapper {
     def userId: String
     def next_max_id: Option[String]
     def hasNext: Option[Boolean]
-    def id: Option[String]
+    def requestId: Option[String]
+    def scrapperId: Option[String]
     def filter: Option[io.circe.Json]
 
   }
@@ -18,7 +19,8 @@ package object wrapper {
       recursive: Option[Boolean] = None,
       next_max_id: Option[String] = None,
       hasNext: Option[Boolean] = None,
-      id: Option[String] = None,
+      requestId: Option[String] = None,
+      scrapperId: Option[String] = None,
       filter: Option[Json] = None)
       extends QueueRequest
 

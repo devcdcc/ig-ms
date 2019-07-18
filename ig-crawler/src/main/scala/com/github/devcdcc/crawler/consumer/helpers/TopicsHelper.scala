@@ -4,8 +4,11 @@ import com.typesafe.config.Config
 
 trait TopicsHelper {
   def config: Config
-  val userScrapperTopic          = config.getString("topics.scrapper.user")
-  val userMediaScrapperTopic     = config.getString("topics.scrapper.userMedia")
-  val userFollowingScrapperTopic = config.getString("topics.scrapper.userFollowing")
-  val userFollowersScrapperTopic = config.getString("topics.scrapper.userFollowers")
+  val userScrapperTopic: String             = config.getString("topics.scrapper.user")
+  val userMediaScrapperTopic: String        = config.getString("topics.scrapper.userMedia")
+  val mediaElementScrapperTopic: String     = config.getString("topics.scrapper.mediaElement")
+  val userFollowingScrapperTopic: String    = config.getString("topics.scrapper.userFollowing")
+  val followingElementScrapperTopic: String = config.getString("topics.scrapper.followingElement")
+  val userFollowersScrapperTopic: String    = config.getString("topics.scrapper.userFollowers")
+  val followersElementScrapperTopic: String = config.getString("topics.scrapper.followersElement")
 }

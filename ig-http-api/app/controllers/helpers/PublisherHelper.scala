@@ -10,7 +10,7 @@ import org.slf4j.MDC
 import play.api.{Configuration, Logging}
 import play.api.libs.circe.Circe
 import play.api.mvc.{AbstractController, AnyContent, ControllerComponents, Request, Result}
-import services.ig.wrapper.UserRequest
+import services.ig.wrapper.scrapper.UserRequest
 import services.util.RandomGenerator
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -34,8 +34,8 @@ class PublisherHelper @Inject()(
     (json deepMerge (fieldName, status).asJson).toString()
 
   protected def basicRequestMaker(userId: String, destinationTopic: String)(implicit request: Request[AnyContent]) = {
-    implicit val user = UserRequest(userId = userId, id = Option(randomService.generate()))
-    setMDCProgress(user.id)
+    implicit val user = UserRequest(userId = userId, requestId = Option(randomService.generate()))
+    setMDCProgress(user.requestId)
     logger.info(addStatusAsText(user.asJson, "start"))
     val future = publisher.sendAsync(Message(destinationTopic, user.asJson))
     futureToWebResponse(future)

@@ -25,14 +25,19 @@ class Orchestration extends TopicsHelper {
     p
   }
 
-  val builder: StreamsBuilder                 = new StreamsBuilder
-  val users: KStream[String, String]          = builder.stream[String, String](userScrapperTopic)
-  val usersMedia: KStream[String, String]     = builder.stream[String, String](userMediaScrapperTopic)
-  val usersFollowing: KStream[String, String] = builder.stream[String, String](userFollowingScrapperTopic)
-  val usersFollowers: KStream[String, String] = builder.stream[String, String](userFollowersScrapperTopic)
-  val streams: KafkaStreams                   = new KafkaStreams(builder.build(), props)
+  val builder: StreamsBuilder                   = new StreamsBuilder
+  val users: KStream[String, String]            = builder.stream[String, String](userScrapperTopic)
+  val usersMedia: KStream[String, String]       = builder.stream[String, String](userMediaScrapperTopic)
+  val mediaElement: KStream[String, String]     = builder.stream[String, String](mediaElementScrapperTopic)
+  val usersFollowing: KStream[String, String]   = builder.stream[String, String](userFollowingScrapperTopic)
+  val followingElement: KStream[String, String] = builder.stream[String, String](followingElementScrapperTopic)
+  val usersFollowers: KStream[String, String]   = builder.stream[String, String](userFollowersScrapperTopic)
+  val followersElement: KStream[String, String] = builder.stream[String, String](followersElementScrapperTopic)
+  val streams: KafkaStreams                     = new KafkaStreams(builder.build(), props)
 
+//  users.selectKey()
   streams.start()
+
   sys.ShutdownHookThread {
     streams.close(Duration.ofSeconds(10))
   }
