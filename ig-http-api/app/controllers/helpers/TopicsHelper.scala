@@ -1,4 +1,4 @@
-package controllers.helps
+package controllers.helpers
 
 import play.api.Configuration
 
