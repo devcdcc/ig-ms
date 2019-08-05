@@ -11,7 +11,7 @@ import play.api.Configuration
 import play.api.mvc._
 import play.api.test.Helpers._
 import play.api.test._
-import services.ig.wrapper._
+import services.ig.wrapper.scrapper.UserRequest
 import services.util.RandomGenerator
 import AuthenticationHelper._
 import scala.concurrent.Future
