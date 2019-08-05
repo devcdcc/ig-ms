@@ -7,7 +7,7 @@ import javax.inject._
 import play.api.Configuration
 import play.api.mvc._
 
-import services.util.RandomGenerator
+import services.random.RandomGenerator
 
 @Singleton
 class UserScrapperController @Inject()(

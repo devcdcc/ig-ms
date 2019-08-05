@@ -11,8 +11,9 @@ import org.apache.kafka.streams.scala._
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.streams.scala.kstream._
 import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
+import helpers.TopicsHelper._
 
-class Orchestration extends TopicsHelper {
+class Orchestration {
   import Serdes._
 
   val props: Properties = {

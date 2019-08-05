@@ -15,15 +15,15 @@ libraryDependencies += guice
 val playVersion = "2.7.3"
 libraryDependencies += "com.typesafe.play" %% "play-json" % playVersion
 
-val http4sVersion   = "0.20.1"
+val http4sVersion = "0.20.1"
 
 def http4sLibraries =
   Seq(
     "org.http4s" %% "http4s-dsl"          % http4sVersion,
     "org.http4s" %% "http4s-blaze-client" % http4sVersion,
-"org.http4s" %% "http4s-circe"        % http4sVersion
-)
-  // https://mvnrepository.com/artifact/org.http4s/http4s-circe
+    "org.http4s" %% "http4s-circe"        % http4sVersion
+  )
+// https://mvnrepository.com/artifact/org.http4s/http4s-circe
 //libraryDependencies ++= Seq(
 //  "org.http4s" %% "http4s-dsl"          % http4sVersion,
 //  "org.http4s" %% "http4s-blaze-client" % http4sVersion,
@@ -56,7 +56,7 @@ val commonSettings = Seq(
   version := projectVersion,
   scalafmtOnCompile := true,
   libraryDependencies ++= circeLibraries,
-  libraryDependencies += "com.typesafe" % "config" % "1.3.3",
+  libraryDependencies += "com.typesafe"  % "config"         % "1.3.3",
   libraryDependencies += "org.scalactic" %% "scalactic"     % "3.0.5",
   libraryDependencies += "org.scalatest" %% "scalatest"     % "3.0.5" % Test,
   libraryDependencies += "org.mockito"   %% "mockito-scala" % "1.1.2" % Test
@@ -98,6 +98,8 @@ lazy val `ig-crawler` = (project in file("ig-crawler"))
     libraryDependencies ++= (http4sLibraries ++ circeLibraries),
     addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
   )
+  .dependsOn(commons)
+  .aggregate(commons)
   .settings(commonSettings)
   .enablePlugins(ScalafmtPlugin)
 

@@ -1,6 +1,7 @@
-package services.util
+package services.random
+
 import java.security.SecureRandom
-import java.util.{Base64, Calendar};
+import java.util.Base64;
 
 trait RandomGenerator {
 

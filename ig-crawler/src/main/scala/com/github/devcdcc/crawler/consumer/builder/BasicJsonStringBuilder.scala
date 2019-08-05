@@ -13,17 +13,17 @@ abstract class BasicJsonStringBuilder(builder: StreamsBuilder, override val topi
     io.circe.parser.parse(json).fold(fail => Left(json), parsed => Right(parsed))
 
   override val topicStream: KStream[String, String] = builder.stream(topic)
-  private val jsonStream                            = topicStream.mapValues(value => parseJson(value))
+  protected val jsonStream                          = topicStream.mapValues(value => parseJson(value))
 
-  protected def parseSuccess =
-    jsonStream
+  protected def parseSuccess(stream: KStream[String, Either[String, Json]]) =
+    stream
       .filter((key, value) => value.isRight)
       .mapValues(
         either => either match { case Right(value) => value }
       )
 
-  protected def parseFails =
-    jsonStream
+  protected def parseFails(stream: KStream[String, Either[String, Json]], topic: String = this.topic) =
+    stream
       .filter((key, value) => value.isLeft)
       .mapValues(
         either => either match { case Left(value) => value }
@@ -33,5 +33,5 @@ abstract class BasicJsonStringBuilder(builder: StreamsBuilder, override val topi
   /**
     * this method must be called from child [[transact]]
     */
-  override def transact: Unit = parseFails
+  override def transact: Unit = parseFails(jsonStream)
 }
