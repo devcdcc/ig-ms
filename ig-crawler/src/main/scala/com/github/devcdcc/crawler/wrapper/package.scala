@@ -25,9 +25,13 @@ package object wrapper {
       extends QueueRequest
 
   implicit class PathHelper[T <: QueueRequest](request: T) {
-    private val nodeURL = "localhost:3000/"
-    private def userId  = request.userId
+    private def defaultNodeUrl = "localhost:3000/"
+    private def nodeURL =
+      request.scrapperId
+        .map(scrapperId => s"$scrapperId.$defaultNodeUrl")
+        .getOrElse(defaultNodeUrl)
 
+    private def userId: String          = request.userId
     final def userPath: String          = nodeURL + s"/user/$userId"
     final def userMediaPath: String     = nodeURL + s"/user/$userId/media"
     final def userResolvePath: String   = nodeURL + s"/user/$userId/resolve"

@@ -1,9 +1,9 @@
 package com.github.devcdcc.crawler.consumer.helpers
 
-import com.typesafe.config.Config
+import com.typesafe.config.{Config, ConfigFactory}
 
-trait TopicsHelper {
-  def config: Config
+object TopicsHelper {
+  def config: Config                        = ConfigFactory.load()
   val userScrapperTopic: String             = config.getString("topics.scrapper.user")
   val userMediaScrapperTopic: String        = config.getString("topics.scrapper.userMedia")
   val mediaElementScrapperTopic: String     = config.getString("topics.scrapper.mediaElement")

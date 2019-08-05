@@ -15,8 +15,6 @@ import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
 class Orchestration extends TopicsHelper {
   import Serdes._
 
-  def config: Config = com.github.devcdcc.Configuration.config
-
   val props: Properties = {
     val p = new Properties()
     p.put(StreamsConfig.APPLICATION_ID_CONFIG, config.getString("app.id"))
@@ -39,6 +37,6 @@ class Orchestration extends TopicsHelper {
   streams.start()
 
   sys.ShutdownHookThread {
-    streams.close(Duration.ofSeconds(10))
+    streams.close()
   }
 }
