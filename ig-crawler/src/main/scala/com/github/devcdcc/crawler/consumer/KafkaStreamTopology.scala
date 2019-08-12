@@ -4,8 +4,15 @@ import java.util.Properties
 
 import org.apache.kafka.streams.{KafkaStreams, Topology}
 
-class KafkaStreamTopology(topology: Topology, props: Properties)
-    extends TopologyTrait(topology = topology, props = props) {
+class KafkaStreamTopology extends TopologyTrait {
+
+  private var topology: Topology = _
+  private var props: Properties  = _
+
+  override def set(topology: Topology, props: Properties): Unit = {
+    this.topology = topology
+    this.props = props
+  }
 
   private val stream       = new KafkaStreams(topology, props)
   override def start: Unit = stream.start()

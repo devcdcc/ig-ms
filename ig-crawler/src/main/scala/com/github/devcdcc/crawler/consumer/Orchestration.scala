@@ -8,7 +8,7 @@ import com.github.devcdcc.media.{CarouselMediaConverter, MediaConverter, SimpleM
 import org.apache.kafka.streams.StreamsConfig
 import org.apache.kafka.streams.scala._
 
-class Orchestration[T <: TopologyTrait] {
+class Orchestration[T <: TopologyTrait](topology: T) {
   val converters: List[MediaConverter] = List(new SimpleMediaConverter, new CarouselMediaConverter)
 
   val props: Properties = {
@@ -23,11 +23,11 @@ class Orchestration[T <: TopologyTrait] {
 
   val builder: StreamsBuilder                          = new StreamsBuilder
   val scrappers: List[AbstractBuilder[String, String]] = List(new MediaScrapperBuilder(builder, converters))
-  val topology: T                                      = new T(builder.build(), props)
 
 //  users.selectKey()
   def start: Unit = {
     scrappers.foreach(_.transact)
+    topology.set(builder.build(), props)
     topology.start
     sys.ShutdownHookThread {
       topology.close
