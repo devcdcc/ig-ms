@@ -19,8 +19,11 @@ class TestTopology(messages: Iterable[ConsumerRecord[Array[Byte], Array[Byte]]])
     this.props = props
   }
 
-  private lazy val stream  = new TopologyTestDriver(topology, props)
-  override def start: Unit = messages.foreach(record => stream.pipeInput(record))
+  lazy val stream = new TopologyTestDriver(topology, props)
+  override def start: Unit =
+    messages.foreach(record => {
+      stream.pipeInput(record)
+    })
   override def close: Unit = stream.close()
 
 }

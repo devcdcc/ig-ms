@@ -9,5 +9,5 @@ trait MediaConverter {
   def convert: Json => Json
 
   def isMediaType(json: Json): Boolean =
-    json.hcursor.downField("mediaType").as[Int].fold(_ => false, c => c == mediaType)
+    json.hcursor.downField("media_type").as[Int].fold(_ => false, c => c == mediaType)
 }
