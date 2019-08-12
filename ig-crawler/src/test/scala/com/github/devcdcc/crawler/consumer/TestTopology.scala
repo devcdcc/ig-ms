@@ -1,13 +1,9 @@
-package com.github.devcdcc.crawler
+package com.github.devcdcc.crawler.consumer
 
 import java.util.Properties
 
-import com.github.devcdcc.crawler.consumer.TopologyTrait
-import org.apache.kafka.clients.consumer.{ConsumerRecord, ConsumerRecords}
-import org.apache.kafka.streams.test.ConsumerRecordFactory
+import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.streams.{Topology, TopologyTestDriver}
-
-import scala.collection.JavaConverters._
 
 class TestTopology(messages: Iterable[ConsumerRecord[Array[Byte], Array[Byte]]]) extends TopologyTrait {
 

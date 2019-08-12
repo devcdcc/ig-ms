@@ -1,6 +1,6 @@
 package com.github.devcdcc.crawler
 
-import com.github.devcdcc.crawler.consumer.Orchestration
+import com.github.devcdcc.crawler.consumer.{Orchestration, TestTopology}
 import com.github.devcdcc.crawler.consumer.helpers.TopicsHelper
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.{StringDeserializer, StringSerializer}
