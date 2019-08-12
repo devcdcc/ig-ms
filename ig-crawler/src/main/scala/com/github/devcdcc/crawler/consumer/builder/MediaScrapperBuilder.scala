@@ -8,7 +8,7 @@ import org.apache.kafka.streams.scala.Serdes._
 import org.apache.kafka.streams.scala.{StreamsBuilder, _}
 import org.apache.kafka.streams.scala.kstream._
 
-class MediaScrapperBuilder(builder: StreamsBuilder, handlers: List[MediaConverter])
+class MediaScrapperBuilder(builder: StreamsBuilder, converters: List[MediaConverter])
     extends BasicJsonStringBuilder(builder = builder, topic = TopicsHelper.userMediaScrapperTopic)
     with MediaJsonFlatter {
 
@@ -19,7 +19,7 @@ class MediaScrapperBuilder(builder: StreamsBuilder, handlers: List[MediaConverte
   //  .to(s"${TopicsHelper.mediaElementScrapperTopic}")
 
   private def mapMediaElement: Json => Either[String, Json] = { json =>
-    handlers.find(converter => converter.isMediaType(json)) match {
+    converters.find(converter => converter.isMediaType(json)) match {
       case None            => Left(json.noSpaces)
       case Some(converter) => Right(converter.convert(json))
     }

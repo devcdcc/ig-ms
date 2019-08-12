@@ -72,7 +72,7 @@ lazy val `publisher-trait` = (project in file("publisher-trait"))
     libraryDependencies += "com.dslplatform" %% "dsl-json-scala" % "1.9.3",
     libraryDependencies += "org.scalatest"   %% "scalatest"      % "3.0.5" % Test,
     // https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams-scala
-    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.1.1"
+    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.3.0"
   )
   .enablePlugins(ScalafmtPlugin)
   .dependsOn(commons)
@@ -80,7 +80,7 @@ lazy val `publisher-trait` = (project in file("publisher-trait"))
 lazy val `ig-http-api` = (project in file("ig-http-api"))
   .settings(
     libraryDependencies += "com.github.com.devcdcc" %% "publisher-trait"     % "0.1",
-    libraryDependencies += "org.apache.kafka"       %% "kafka-streams-scala" % "2.1.1",
+    libraryDependencies += "org.apache.kafka"       %% "kafka-streams-scala" % "2.3.0",
     libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play"  % "4.0.3" % Test,
     libraryDependencies += "com.dripower"           %% "play-circe"          % "2711.0",
     libraryDependencies += ws
@@ -94,9 +94,11 @@ lazy val `ig-http-api` = (project in file("ig-http-api"))
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 lazy val `ig-crawler` = (project in file("ig-crawler"))
   .settings(
-    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.1.1",
+    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.3.0",
     libraryDependencies ++= (http4sLibraries ++ circeLibraries),
-    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
+    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
+    // https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams-test-utils
+    libraryDependencies += "org.apache.kafka" % "kafka-streams-test-utils" % "2.3.0" % Test
   )
   .dependsOn(commons)
   .aggregate(commons)
