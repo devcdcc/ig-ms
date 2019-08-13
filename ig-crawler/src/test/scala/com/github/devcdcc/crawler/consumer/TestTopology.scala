@@ -5,10 +5,14 @@ import java.util.Properties
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.streams.{Topology, TopologyTestDriver}
 
-class TestTopology(messages: Iterable[ConsumerRecord[Array[Byte], Array[Byte]]]) extends TopologyTrait {
+class TestTopology extends TopologyTrait {
 
-  private var topology: Topology = _
-  private var props: Properties  = _
+  private var topology: Topology                                   = _
+  private var props: Properties                                    = _
+  var messages: Iterable[ConsumerRecord[Array[Byte], Array[Byte]]] = Iterable.empty
+
+  def setMessages(messages: Iterable[ConsumerRecord[Array[Byte], Array[Byte]]]) =
+    this.messages = messages
 
   override def set(topology: Topology, props: Properties): Unit = {
     this.topology = topology

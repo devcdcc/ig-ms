@@ -25,7 +25,6 @@ class Orchestration[T <: TopologyTrait](topology: T) {
   val scrappers: List[AbstractBuilder[String, String]] = List(new MediaScrapperBuilder(builder, converters))
   lazy val build: Topology                             = builder.build()
 
-//  users.selectKey()
   def start: Unit = {
     scrappers.foreach(_.transact)
     topology.set(build, props)
