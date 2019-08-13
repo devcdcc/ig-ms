@@ -5,7 +5,7 @@ import java.util.Properties
 import com.github.devcdcc.crawler.consumer.builder.{AbstractBuilder, MediaScrapperBuilder}
 import com.github.devcdcc.crawler.consumer.helpers.TopicsHelper._
 import com.github.devcdcc.media.{CarouselMediaConverter, MediaConverter, SimpleMediaConverter}
-import org.apache.kafka.streams.StreamsConfig
+import org.apache.kafka.streams.{StreamsConfig, Topology}
 import org.apache.kafka.streams.scala._
 
 class Orchestration[T <: TopologyTrait](topology: T) {
@@ -23,11 +23,12 @@ class Orchestration[T <: TopologyTrait](topology: T) {
 
   val builder: StreamsBuilder                          = new StreamsBuilder
   val scrappers: List[AbstractBuilder[String, String]] = List(new MediaScrapperBuilder(builder, converters))
+  lazy val build: Topology                             = builder.build()
 
 //  users.selectKey()
   def start: Unit = {
     scrappers.foreach(_.transact)
-    topology.set(builder.build(), props)
+    topology.set(build, props)
     topology.start
     sys.ShutdownHookThread {
       topology.close
