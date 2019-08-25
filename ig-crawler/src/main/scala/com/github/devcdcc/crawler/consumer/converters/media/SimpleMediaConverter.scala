@@ -8,7 +8,7 @@ import services.random.RandomGeneratorObject
 import io.circe.generic.auto._
 import io.circe.syntax._
 
-class SimpleMediaConverter extends MediaConverter {
+class SimpleMediaConverter extends AbstractMediaConverter {
 
   def elementType: Int = 1
   override def convert: Json => Json =

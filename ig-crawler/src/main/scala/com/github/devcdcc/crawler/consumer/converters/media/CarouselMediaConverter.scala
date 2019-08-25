@@ -4,7 +4,7 @@ import io.circe.Json
 import io.circe.optics.JsonPath._
 import services.random.RandomGeneratorObject
 
-class CarouselMediaConverter extends MediaConverter {
+class CarouselMediaConverter extends AbstractMediaConverter {
 
   def elementType: Int = 8
 

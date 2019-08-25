@@ -6,15 +6,15 @@ import com.github.devcdcc.crawler.consumer.builder.AbstractBuilder
 import com.github.devcdcc.crawler.consumer.builder.processor.MediaScrapperBuilder
 import com.github.devcdcc.crawler.consumer.helpers.TopicsHelper._
 import com.github.devcdcc.crawler.consumer.converters.media.{
+  AbstractMediaConverter,
   CarouselMediaConverter,
-  MediaConverter,
   SimpleMediaConverter
 }
 import org.apache.kafka.streams.{StreamsConfig, Topology}
 import org.apache.kafka.streams.scala._
 
 class Orchestration[T <: TopologyTrait](topology: T) {
-  val converters: List[MediaConverter] = List(new SimpleMediaConverter, new CarouselMediaConverter)
+  val converters: List[AbstractMediaConverter] = List(new SimpleMediaConverter, new CarouselMediaConverter)
 
   val props: Properties = {
     val p = new Properties()

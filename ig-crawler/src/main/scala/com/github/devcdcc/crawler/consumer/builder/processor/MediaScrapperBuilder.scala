@@ -2,13 +2,13 @@ package com.github.devcdcc.crawler.consumer.builder.processor
 
 import com.github.devcdcc.crawler.consumer.builder.BasicJsonStringBuilder
 import com.github.devcdcc.crawler.consumer.helpers.TopicsHelper
-import com.github.devcdcc.crawler.consumer.converters.media.MediaConverter
+import com.github.devcdcc.crawler.consumer.converters.media.AbstractMediaConverter
 import io.circe._
 import org.apache.kafka.streams.scala.ImplicitConversions._
 import org.apache.kafka.streams.scala.Serdes._
 import org.apache.kafka.streams.scala.StreamsBuilder
 
-class MediaScrapperBuilder(builder: StreamsBuilder, converters: List[MediaConverter])
+class MediaScrapperBuilder(builder: StreamsBuilder, converters: List[AbstractMediaConverter])
     extends BasicJsonStringBuilder(builder = builder, topic = TopicsHelper.userMediaScrapperTopic)
     with MediaJsonFlatter {
 

@@ -6,6 +6,7 @@ package object wrapper {
 
   trait QueueRequest {
     def userId: String
+    def requestType: Option[String]
     def next_max_id: Option[String]
     def hasNext: Option[Boolean]
     def requestId: Option[String]
@@ -14,28 +15,36 @@ package object wrapper {
 
   }
 
-  case class UserRequest(
+  case class MediaRequest(
       userId: String,
-      recursive: Option[Boolean] = None,
       next_max_id: Option[String] = None,
       hasNext: Option[Boolean] = None,
       requestId: Option[String] = None,
       scrapperId: Option[String] = None,
       filter: Option[Json] = None)
-      extends QueueRequest
+      extends QueueRequest {
+    def requestType: Option[String] = Some("media")
+  }
+  case class UserRequest(
+      userId: String,
+      next_max_id: Option[String] = None,
+      hasNext: Option[Boolean] = None,
+      requestId: Option[String] = None,
+      scrapperId: Option[String] = None,
+      filter: Option[Json] = None,
+      recursive: Option[Boolean] = None)
+      extends QueueRequest {
+    def requestType: Option[String] = None
+  }
 
+  final private val DEFAULT_NODE_URL = "localhost:3000/"
   implicit class PathHelper[T <: QueueRequest](request: T) {
-    private def defaultNodeUrl = "localhost:3000/"
+
     private def nodeURL =
       request.scrapperId
-        .map(scrapperId => s"$scrapperId.$defaultNodeUrl")
-        .getOrElse(defaultNodeUrl)
+        .map(scrapperId => s"$scrapperId.$DEFAULT_NODE_URL")
+        .getOrElse(DEFAULT_NODE_URL)
+    def requestURl: String = s"$nodeURL/user/${request.userId}/${request.requestType.getOrElse("")}"
 
-    private def userId: String          = request.userId
-    final def userPath: String          = nodeURL + s"/user/$userId"
-    final def userMediaPath: String     = nodeURL + s"/user/$userId/media"
-    final def userResolvePath: String   = nodeURL + s"/user/$userId/resolve"
-    final def userFollowingPath: String = nodeURL + s"/user/$userId/following"
-    final def userFollowersPath: String = nodeURL + s"/user/$userId/followers"
   }
 }
