@@ -1,4 +1,4 @@
-package com.github.devcdcc.crawler.consumer.builder
+package com.github.devcdcc.crawler.consumer.builder.processor
 
 import io.circe.Json
 

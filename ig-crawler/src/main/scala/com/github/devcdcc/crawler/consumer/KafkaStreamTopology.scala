@@ -14,7 +14,7 @@ class KafkaStreamTopology extends TopologyTrait {
     this.props = props
   }
 
-  private val stream       = new KafkaStreams(topology, props)
+  private lazy val stream  = new KafkaStreams(topology, props)
   override def start: Unit = stream.start()
   override def close: Unit = stream.close()
 

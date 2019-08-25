@@ -13,7 +13,11 @@ resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 libraryDependencies += guice
 // https://mvnrepository.com/artifact/com.typesafe.play/play-json
 val playVersion = "2.7.3"
-libraryDependencies += "com.typesafe.play" %% "play-json" % playVersion
+libraryDependencies += "com.typesafe.play"       %% "play-json"            % playVersion
+libraryDependencies += "org.testcontainers"      % "selenium"              % "1.12.0"
+libraryDependencies += "com.dimafeng"            %% "testcontainers-scala" % "0.30.0" % Test
+libraryDependencies += "org.seleniumhq.selenium" % "selenium-java"         % "3.141.59"
+libraryDependencies += "io.cucumber"             %% "cucumber-scala"       % "4.7.1" % Test
 
 val http4sVersion = "0.20.1"
 
@@ -23,13 +27,6 @@ def http4sLibraries =
     "org.http4s" %% "http4s-blaze-client" % http4sVersion,
     "org.http4s" %% "http4s-circe"        % http4sVersion
   )
-// https://mvnrepository.com/artifact/org.http4s/http4s-circe
-//libraryDependencies ++= Seq(
-//  "org.http4s" %% "http4s-dsl"          % http4sVersion,
-//  "org.http4s" %% "http4s-blaze-client" % http4sVersion,
-//  "org.http4s" %% "http4s-circe"        % http4sVersion
-//)
-//libraryDependencies ++= httpsLibraries
 libraryDependencies += "io.cucumber" %% "cucumber-scala" % "4.3.1" % Test
 
 val akkaVersion = "2.5.23"
@@ -37,7 +34,6 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor"   % akkaVersion,
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test
 )
-// https://mvnrepository.com/artifact/com.typesafe.akka/akka-stream-kafka
 libraryDependencies += "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.1"
 
 val circeVersion = "0.11.0"

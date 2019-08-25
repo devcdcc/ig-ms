@@ -1,4 +1,4 @@
-package com.github.devcdcc.media
+package com.github.devcdcc.crawler.consumer.converters.media
 import io.circe.Json
 import cats.syntax.either._
 import io.circe._
@@ -10,7 +10,7 @@ import io.circe.syntax._
 
 class SimpleMediaConverter extends MediaConverter {
 
-  protected def mediaType: Int = 1
+  def elementType: Int = 1
   override def convert: Json => Json =
     root.image_versions2.candidates.each.json
       .modify(

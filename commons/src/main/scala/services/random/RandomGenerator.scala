@@ -1,20 +1,23 @@
 package services.random
 
 import java.security.SecureRandom
-import java.util.Base64;
+import java.util.Base64
 
 trait RandomGenerator {
 
-  def generate(): String
+  protected val defaultLength: Int
+  def generate(length: Int): String
+  def generate(): String = generate(defaultLength)
 
 }
 
 class RandomGeneratorImpl extends RandomGenerator {
-  val random: SecureRandom    = new SecureRandom()
-  val encoder: Base64.Encoder = Base64.getUrlEncoder.withoutPadding()
+  protected val defaultLength         = 24
+  private val random: SecureRandom    = new SecureRandom()
+  private val encoder: Base64.Encoder = Base64.getUrlEncoder.withoutPadding()
 
-  def generate(): String = {
-    val buffer = new Array[Byte](20)
+  def generate(length: Int): String = {
+    val buffer = new Array[Byte](length)
     random.nextBytes(buffer)
     encoder.encodeToString(buffer)
   }
