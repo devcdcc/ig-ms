@@ -8,7 +8,7 @@ import com.typesafe.config.{Config, ConfigFactory}
 import javax.inject.Inject
 import org.apache.kafka.common.serialization.{Serializer, StringSerializer}
 import play.inject.DelegateApplicationLifecycle
-import services.util.{RandomGenerator, RandomGeneratorImpl}
+import services.random
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
@@ -29,8 +29,8 @@ class Module extends AbstractModule {
   private val logger        = play.api.Logger(Module.super.toString)
 
   override def configure(): Unit =
-    bind(classOf[RandomGenerator])
-      .to(classOf[RandomGeneratorImpl])
+    bind(classOf[random.RandomGenerator])
+      .to(classOf[random.RandomGeneratorImpl])
       .asEagerSingleton()
 
   @Provides

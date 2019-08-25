@@ -11,7 +11,7 @@ import play.api.{Configuration, Logging}
 import play.api.libs.circe.Circe
 import play.api.mvc.{AbstractController, AnyContent, ControllerComponents, Request, Result}
 import services.ig.wrapper.scrapper.UserRequest
-import services.util.RandomGenerator
+import services.random.RandomGenerator
 
 import scala.concurrent.{ExecutionContext, Future}
 

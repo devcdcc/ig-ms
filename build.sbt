@@ -13,23 +13,20 @@ resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 libraryDependencies += guice
 // https://mvnrepository.com/artifact/com.typesafe.play/play-json
 val playVersion = "2.7.3"
-libraryDependencies += "com.typesafe.play" %% "play-json" % playVersion
+libraryDependencies += "com.typesafe.play"       %% "play-json"            % playVersion
+libraryDependencies += "org.testcontainers"      % "selenium"              % "1.12.0"
+libraryDependencies += "com.dimafeng"            %% "testcontainers-scala" % "0.30.0" % Test
+libraryDependencies += "org.seleniumhq.selenium" % "selenium-java"         % "3.141.59"
+libraryDependencies += "io.cucumber"             %% "cucumber-scala"       % "4.7.1" % Test
 
-val http4sVersion   = "0.20.1"
+val http4sVersion = "0.20.1"
 
 def http4sLibraries =
   Seq(
     "org.http4s" %% "http4s-dsl"          % http4sVersion,
     "org.http4s" %% "http4s-blaze-client" % http4sVersion,
-"org.http4s" %% "http4s-circe"        % http4sVersion
-)
-  // https://mvnrepository.com/artifact/org.http4s/http4s-circe
-//libraryDependencies ++= Seq(
-//  "org.http4s" %% "http4s-dsl"          % http4sVersion,
-//  "org.http4s" %% "http4s-blaze-client" % http4sVersion,
-//  "org.http4s" %% "http4s-circe"        % http4sVersion
-//)
-//libraryDependencies ++= httpsLibraries
+    "org.http4s" %% "http4s-circe"        % http4sVersion
+  )
 libraryDependencies += "io.cucumber" %% "cucumber-scala" % "4.3.1" % Test
 
 val akkaVersion = "2.5.23"
@@ -37,7 +34,6 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor"   % akkaVersion,
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test
 )
-// https://mvnrepository.com/artifact/com.typesafe.akka/akka-stream-kafka
 libraryDependencies += "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.1"
 
 val circeVersion = "0.11.0"
@@ -56,7 +52,7 @@ val commonSettings = Seq(
   version := projectVersion,
   scalafmtOnCompile := true,
   libraryDependencies ++= circeLibraries,
-  libraryDependencies += "com.typesafe" % "config" % "1.3.3",
+  libraryDependencies += "com.typesafe"  % "config"         % "1.3.3",
   libraryDependencies += "org.scalactic" %% "scalactic"     % "3.0.5",
   libraryDependencies += "org.scalatest" %% "scalatest"     % "3.0.5" % Test,
   libraryDependencies += "org.mockito"   %% "mockito-scala" % "1.1.2" % Test
@@ -72,7 +68,7 @@ lazy val `publisher-trait` = (project in file("publisher-trait"))
     libraryDependencies += "com.dslplatform" %% "dsl-json-scala" % "1.9.3",
     libraryDependencies += "org.scalatest"   %% "scalatest"      % "3.0.5" % Test,
     // https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams-scala
-    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.1.1"
+    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.3.0"
   )
   .enablePlugins(ScalafmtPlugin)
   .dependsOn(commons)
@@ -80,7 +76,7 @@ lazy val `publisher-trait` = (project in file("publisher-trait"))
 lazy val `ig-http-api` = (project in file("ig-http-api"))
   .settings(
     libraryDependencies += "com.github.com.devcdcc" %% "publisher-trait"     % "0.1",
-    libraryDependencies += "org.apache.kafka"       %% "kafka-streams-scala" % "2.1.1",
+    libraryDependencies += "org.apache.kafka"       %% "kafka-streams-scala" % "2.3.0",
     libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play"  % "4.0.3" % Test,
     libraryDependencies += "com.dripower"           %% "play-circe"          % "2711.0",
     libraryDependencies += ws
@@ -94,10 +90,14 @@ lazy val `ig-http-api` = (project in file("ig-http-api"))
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 lazy val `ig-crawler` = (project in file("ig-crawler"))
   .settings(
-    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.1.1",
+    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.3.0",
     libraryDependencies ++= (http4sLibraries ++ circeLibraries),
-    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
+    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
+    // https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams-test-utils
+    libraryDependencies += "org.apache.kafka" % "kafka-streams-test-utils" % "2.3.0" % Test
   )
+  .dependsOn(commons)
+  .aggregate(commons)
   .settings(commonSettings)
   .enablePlugins(ScalafmtPlugin)
 
