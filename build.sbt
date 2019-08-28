@@ -52,10 +52,15 @@ val commonSettings = Seq(
   version := projectVersion,
   scalafmtOnCompile := true,
   libraryDependencies ++= circeLibraries,
-  libraryDependencies += "com.typesafe"  % "config"         % "1.3.3",
-  libraryDependencies += "org.scalactic" %% "scalactic"     % "3.0.5",
-  libraryDependencies += "org.scalatest" %% "scalatest"     % "3.0.5" % Test,
-  libraryDependencies += "org.mockito"   %% "mockito-scala" % "1.1.2" % Test
+  libraryDependencies += "com.typesafe"             % "config"                    % "1.3.3",
+  libraryDependencies += "org.scalactic"            %% "scalactic"                % "3.0.5",
+  libraryDependencies += "org.scalatest"            %% "scalatest"                % "3.0.5" % Test,
+  libraryDependencies += "com.softwaremill.macwire" %% "macros"                   % "2.3.3" % "provided",
+  libraryDependencies += "com.softwaremill.macwire" %% "util"                     % "2.3.3",
+  libraryDependencies += "org.mockito"              %% "mockito-scala"            % "1.1.2" % Test,
+  libraryDependencies += "io.lettuce"               % "lettuce-core"              % "5.1.8.RELEASE",
+  libraryDependencies += "io.vertx"                 %% "vertx-redis-client-scala" % "3.8.0",
+  libraryDependencies += "io.vertx"                 %% "vertx-lang-scala"         % "3.8.0"
 ) // https://mvnrepository.com/artifact/com.dripower/play-circe
 
 lazy val commons = (project in file("commons"))
