@@ -1,21 +1,16 @@
 package com.github.devcdcc.services.queue.publishers
 
-import java.util.Calendar
-
 import akka.actor.ActorSystem
-import akka.kafka.scaladsl.Producer
 import akka.kafka.ProducerSettings
+import akka.kafka.scaladsl.Producer
 import com.github.devcdcc.services.queue._
-import com.google.inject.Singleton
-import com.typesafe.config.{Config, ConfigFactory}
-import javax.inject.Inject
-
-import scala.util.Try
+import com.typesafe.config.Config
 import org.apache.kafka.clients.producer.{ProducerRecord, RecordMetadata}
-import org.apache.kafka.common.serialization.{Serializer, StringSerializer}
+import org.apache.kafka.common.serialization.Serializer
 
 import scala.collection.JavaConverters._
 import scala.concurrent.{ExecutionContext, Future}
+import scala.util.Try
 
 /**
   * This is an implementation for [[Publisher]] class, that allow communicate

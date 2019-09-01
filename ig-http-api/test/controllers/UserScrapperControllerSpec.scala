@@ -11,9 +11,10 @@ import play.api.Configuration
 import play.api.mvc._
 import play.api.test.Helpers._
 import play.api.test._
-import services.ig.wrapper.scrapper.UserRequest
 import services.random.RandomGenerator
 import AuthenticationHelper._
+import com.github.devcdcc.domain.UserRequest
+
 import scala.concurrent.Future
 
 class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
@@ -33,7 +34,7 @@ class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
 
   val userId = "123123"
 
-  def testPostAction(_userId: String, suffix: String = "")(action: String => Action[AnyContent]) =
+  def testPostAction(_userId: String, suffix: String = "")(action: String => Action[AnyContent]): Unit =
     s"For scrapping user data :$suffix" should {
       "return unauthorized response when is not authenticated" in {
         //given

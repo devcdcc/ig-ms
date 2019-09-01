@@ -1,6 +1,5 @@
 package controllers.helpers
 
-import play.api.mvc.Results._
 import com.github.devcdcc.services.queue.{CirceToStringMessageValueConverter, Message, MessageValueConverter, Publisher}
 import com.google.inject.Inject
 import io.circe.Json
@@ -10,7 +9,7 @@ import org.slf4j.MDC
 import play.api.{Configuration, Logging}
 import play.api.libs.circe.Circe
 import play.api.mvc.{AbstractController, AnyContent, ControllerComponents, Request, Result}
-import services.ig.wrapper.scrapper.UserRequest
+import com.github.devcdcc.domain.UserRequest
 import services.random.RandomGenerator
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -33,15 +32,19 @@ class PublisherHelper @Inject()(
   private def addStatusAsText(json: Json, status: String, fieldName: String = "status") =
     (json deepMerge (fieldName, status).asJson).toString()
 
-  protected def basicRequestMaker(userId: String, destinationTopic: String)(implicit request: Request[AnyContent]) = {
-    implicit val user = UserRequest(userId = userId, requestId = Option(randomService.generate()))
+  protected def basicRequestMaker(
+      userId: String,
+      destinationTopic: String
+    )(implicit request: Request[AnyContent]
+    ): Future[Result] = {
+    implicit val user: UserRequest = UserRequest(userId = userId, requestId = Option(randomService.generate()))
     setMDCProgress(user.requestId)
     logger.info(addStatusAsText(user.asJson, "start"))
     val future = publisher.sendAsync(Message(destinationTopic, user.asJson))
     futureToWebResponse(future)
   }
 
-  private def setMDCProgress(tx: Option[String] = None)(implicit request: Request[AnyContent]) = {
+  private def setMDCProgress(tx: Option[String] = None)(implicit request: Request[AnyContent]): Unit = {
     MDC.clear()
     tx.foreach(tx => MDC.put("tx", tx))
     MDC.put("path", request.path)
@@ -52,7 +55,7 @@ class PublisherHelper @Inject()(
       response: Future[Message[String, Json, String]]
     )(implicit user: UserRequest,
       executionContext: ExecutionContext
-    ) =
+    ): Future[Result] =
     response
       .map(messageToWebResponse)
       .recoverWith(recoverToWebResponseWrapper)
@@ -61,13 +64,13 @@ class PublisherHelper @Inject()(
     case fail: Throwable => Future.successful(recoverToWebResponse(fail))
   }
 
-  protected def recoverToWebResponse(fail: Throwable)(implicit user: UserRequest) = {
+  protected def recoverToWebResponse(fail: Throwable)(implicit user: UserRequest): Result = {
     logger.info(addStatusAsText(user.asJson, "error"))
     logger.error("Error on scrapping user.", fail)
     InternalServerError(user.asJson)
   }
 
-  protected def messageToWebResponse(message: Message[String, Json, String]) = {
+  protected def messageToWebResponse(message: Message[String, Json, String]): Result = {
     logger.info(addStatusAsText(message.value, "enqueued"))
     Accepted(message.value)
   }
