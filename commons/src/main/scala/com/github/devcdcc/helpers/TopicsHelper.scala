@@ -1,4 +1,4 @@
-package com.github.devcdcc.crawler.consumer.helpers
+package com.github.devcdcc.helpers
 
 import com.typesafe.config.{Config, ConfigFactory}
 

@@ -1,7 +1,7 @@
 package com.github.devcdcc.crawler
 
-import com.github.devcdcc.crawler.consumer.helpers.TopicsHelper
 import com.github.devcdcc.crawler.consumer.{OrchestrationTestTopology, OrchestrationTrait}
+import com.github.devcdcc.helpers.TopicsHelper
 import io.circe.optics.JsonPath._
 import io.circe.parser._
 import org.apache.kafka.clients.consumer.ConsumerRecord

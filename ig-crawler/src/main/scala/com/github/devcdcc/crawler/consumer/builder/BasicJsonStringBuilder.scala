@@ -1,6 +1,6 @@
 package com.github.devcdcc.crawler.consumer.builder
 
-import com.github.devcdcc.crawler.consumer.helpers.TopicsHelper._
+import com.github.devcdcc.helpers.TopicsHelper._
 import io.circe.Json
 import org.apache.kafka.streams.scala.ImplicitConversions._
 import org.apache.kafka.streams.scala.StreamsBuilder

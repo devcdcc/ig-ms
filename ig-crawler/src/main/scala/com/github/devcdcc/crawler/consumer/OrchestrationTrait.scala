@@ -9,7 +9,7 @@ import com.github.devcdcc.crawler.consumer.converters.media.{
   CarouselMediaConverter,
   SimpleMediaConverter
 }
-import com.github.devcdcc.crawler.consumer.helpers.TopicsHelper._
+import com.github.devcdcc.helpers.TopicsHelper._
 import org.apache.kafka.streams.scala._
 import org.apache.kafka.streams.{StreamsConfig, Topology}
 

@@ -1,8 +1,10 @@
 package com.github.devcdcc
 import io.circe.Json
+import io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
+
 package object domain {
 
-  trait QueueRequest {
+  sealed trait QueueRequest {
     def userId: String
     def requestType: Option[String]
     def next_max_id: Option[String]
@@ -15,26 +17,24 @@ package object domain {
 
   case class MediaRequest(
       userId: String,
+      requestType: Option[String] = Some("media"),
       next_max_id: Option[String] = None,
       hasNext: Option[Boolean] = None,
       requestId: Option[String] = None,
       scrapperId: Option[String] = None,
       filter: Option[Json] = None)
-      extends QueueRequest {
-    def requestType: Option[String] = Some("MediaRequest")
-  }
+      extends QueueRequest
 
   case class UserRequest(
       userId: String,
+      requestType: Option[String] = None,
       next_max_id: Option[String] = None,
       hasNext: Option[Boolean] = None,
       requestId: Option[String] = None,
       scrapperId: Option[String] = None,
       filter: Option[Json] = None,
       recursive: Option[Boolean] = None)
-      extends QueueRequest {
-    def requestType: Option[String] = Some("UserRequest")
-  }
+      extends QueueRequest
 
   case class RequestUrl(url: Option[String] = None)
 
@@ -51,7 +51,7 @@ package object domain {
       )
 
     def requestURl(implicit requestUrl: RequestUrl = DEFAULT_REQUEST_URL): String =
-      s"$nodeURL/user/${request.userId}/${request.requestType.getOrElse("")}"
+      s"$nodeURL/user/${request.userId}/${request.getClass.getSimpleName}"
 
   }
 

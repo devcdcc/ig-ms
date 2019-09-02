@@ -1,8 +1,8 @@
 package com.github.devcdcc.crawler.consumer.builder
 
 import com.github.devcdcc.crawler.consumer.converters.request.AbstractRequestConverter
-import com.github.devcdcc.crawler.consumer.helpers.TopicsHelper
 import com.github.devcdcc.domain
+import com.github.devcdcc.helpers.TopicsHelper
 import io.circe.generic.auto._
 import org.apache.kafka.streams.scala.ImplicitConversions._
 import org.apache.kafka.streams.scala.Serdes._

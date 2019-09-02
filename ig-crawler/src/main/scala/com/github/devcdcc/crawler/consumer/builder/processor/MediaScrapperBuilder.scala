@@ -1,8 +1,8 @@
 package com.github.devcdcc.crawler.consumer.builder.processor
 
 import com.github.devcdcc.crawler.consumer.builder.BasicJsonStringBuilder
-import com.github.devcdcc.crawler.consumer.helpers.TopicsHelper
 import com.github.devcdcc.crawler.consumer.converters.media.AbstractMediaConverter
+import com.github.devcdcc.helpers.TopicsHelper
 import io.circe._
 import org.apache.kafka.streams.scala.ImplicitConversions._
 import org.apache.kafka.streams.scala.Serdes._
