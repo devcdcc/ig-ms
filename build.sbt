@@ -94,7 +94,6 @@ lazy val `publisher-trait` = (project in file("publisher-trait"))
   .aggregate(commons)
 lazy val `ig-http-api` = (project in file("ig-http-api"))
   .settings(
-    libraryDependencies += "com.github.com.devcdcc" %% "publisher-trait"     % "0.1",
     libraryDependencies += "org.apache.kafka"       %% "kafka-streams-scala" % "2.3.0",
     libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play"  % "4.0.3" % Test,
     libraryDependencies += "com.dripower"           %% "play-circe"          % "2711.0",

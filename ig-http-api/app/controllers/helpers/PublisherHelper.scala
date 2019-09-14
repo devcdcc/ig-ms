@@ -51,10 +51,12 @@ class PublisherHelper @Inject()(
       response: Future[Message[String, Json, String]]
     )(implicit user: QueueRequest,
       executionContext: ExecutionContext
-    ): Future[Result] =
+    ): Future[Result] = {
+    logger.info(response.toString)
     response
       .map(messageToWebResponse)
       .recoverWith(recoverToWebResponseWrapper)
+  }
 
   protected def recoverToWebResponseWrapper(implicit user: QueueRequest): PartialFunction[Throwable, Future[Result]] = {
     case fail: Throwable => Future.successful(recoverToWebResponse(fail))
