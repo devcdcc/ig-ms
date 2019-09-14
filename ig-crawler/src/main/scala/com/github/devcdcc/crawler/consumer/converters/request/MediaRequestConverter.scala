@@ -1,13 +1,17 @@
 package com.github.devcdcc.crawler.consumer.converters.request
-import com.github.devcdcc.crawler.wrapper
+import com.github.devcdcc.domain
 import io.circe.Json
 
-class MediaRequestConverter extends AbstractRequestConverter[wrapper.MediaRequest] {
+class MediaRequestConverter extends AbstractRequestConverter[domain.MediaRequest] {
 
-  def elementType: Option[String] = Some("media")
+  val elementType: Option[String] = Some("media")
 
-  def convert: (wrapper.MediaRequest, Json) => wrapper.MediaRequest =
+  def convert: (domain.MediaRequest, Json) => domain.MediaRequest =
     (request, json) => {
-      request
+      request.copy(
+        scrapperId = json.hcursor.downField("scrapperId").as[String].toOption,
+        next_max_id = json.hcursor.downField("next_max_id").as[String].toOption,
+        hasNext = json.hcursor.downField("more_available").as[Boolean].toOption
+      )
     }
 }

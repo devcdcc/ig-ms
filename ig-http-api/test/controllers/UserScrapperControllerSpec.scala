@@ -7,13 +7,15 @@ import io.circe.syntax._
 import org.mockito.Mockito.when
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.play.PlaySpec
-import play.api.Configuration
+import play.api.{Configuration, Logger}
 import play.api.mvc._
 import play.api.test.Helpers._
 import play.api.test._
-import services.ig.wrapper.scrapper.UserRequest
 import services.random.RandomGenerator
 import AuthenticationHelper._
+import com.github.devcdcc.domain.{MediaRequest, QueueRequest, UserRequest}
+import com.github.devcdcc.helpers.TopicsHelper
+
 import scala.concurrent.Future
 
 class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
@@ -21,6 +23,8 @@ class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
   var publisher: Publisher[String, String]       = mock[Publisher[String, String]]
   val configuration: Configuration               = mock[Configuration]
   val random: RandomGenerator                    = mock[RandomGenerator]
+
+  when(random.generate()) thenReturn "unknown-random-but-its-okay"
 
   // subject
   val subject =
@@ -33,12 +37,17 @@ class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
 
   val userId = "123123"
 
-  def testPostAction(_userId: String, suffix: String = "")(action: String => Action[AnyContent]) =
+  def testPostAction(
+      _userId: String,
+      suffix: String = ""
+    )(action: String => Action[AnyContent],
+      queueRequest: QueueRequest
+    ): Unit =
     s"For scrapping user data :$suffix" should {
       "return unauthorized response when is not authenticated" in {
         //given
         val userId   = _userId
-        val url      = s"/user/$userId$suffix"
+        val url      = s"/user/$userId/$suffix"
         val expected = UNAUTHORIZED
 
         //when
@@ -53,12 +62,12 @@ class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
         val url    = s"/user/$userId$suffix"
         implicit val simpleStringMessageValueConverter: MessageValueConverter[Json, String] =
           new CirceToStringMessageValueConverter
-        val user                                   = UserRequest(userId = userId, requestId = Option(random.generate()))
-        val message: Message[String, Json, String] = Message(subject.userScrapperTopic, user.asJson)
-        val expected                               = user.asJson.noSpaces
+
+        val message: Message[String, Json, String] = Message(TopicsHelper.appenderTopic, queueRequest.asJson)
+        val expected                               = queueRequest.asJson.noSpaces
 
         //when
-        user.requestId.foreach(id => when(random.generate()) thenReturn id)
+        queueRequest.requestId.foreach(id => when(random.generate()) thenReturn id)
         when(publisher.sendAsync(message)) thenReturn Future.successful(message)
 
         //then
@@ -67,8 +76,17 @@ class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
         status(result) mustBe ACCEPTED
       }
     }
-  testPostAction(userId)(subject.scrapUser)
-  testPostAction(userId, "/media")(subject.scrapMedia)
-  testPostAction(userId, "/following")(subject.scrapFollowing)
-  testPostAction(userId, "/followers")(subject.scrapFollowers)
+  testPostAction(userId)(subject.scrapUser, UserRequest(userId = userId, requestId = Option(random.generate())))
+  testPostAction(userId, "media")(
+    subject.scrapMedia,
+    MediaRequest(userId = userId, requestId = Option(random.generate()))
+  )
+  testPostAction(userId, "following")(
+    subject.scrapFollowing,
+    UserRequest(userId = userId, requestId = Option(random.generate()))
+  )
+  testPostAction(userId, "followers")(
+    subject.scrapFollowers,
+    UserRequest(userId = userId, requestId = Option(random.generate()))
+  )
 }

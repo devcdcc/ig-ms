@@ -1,16 +1,15 @@
 package com.github.devcdcc.crawler
 
-import com.github.devcdcc.crawler.consumer.{Orchestration, TestTopology}
-import com.github.devcdcc.crawler.consumer.helpers.TopicsHelper
+import com.github.devcdcc.crawler.consumer.{OrchestrationTestTopology, OrchestrationTrait}
+import com.github.devcdcc.helpers.TopicsHelper
+import io.circe.optics.JsonPath._
+import io.circe.parser._
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.{StringDeserializer, StringSerializer}
 import org.apache.kafka.streams.TopologyTestDriver
 import org.apache.kafka.streams.test.ConsumerRecordFactory
-import org.scalatest.{MustMatchers, WordSpec}
-import io.circe.parser._
-import io.circe.optics.JsonPath._
 import org.scalatest.mockito.MockitoSugar
-import org.mockito.Mockito._
+import org.scalatest.{MustMatchers, WordSpec}
 
 class OrchestrationSpec extends WordSpec with MustMatchers with TestMessages with MockitoSugar {
 
@@ -21,22 +20,21 @@ class OrchestrationSpec extends WordSpec with MustMatchers with TestMessages wit
       "return okay for valid media json" in {
 
         //given
-        val topology                                           = new TestTopology
-        val subject                                            = new Orchestration(topology = topology)
+        val subject: OrchestrationTrait[TopologyTestDriver]    = new OrchestrationTestTopology()
         val message1: ConsumerRecord[Array[Byte], Array[Byte]] = factory.create(onlyMedia1)
         val messages                                           = List(message1)
 
         //when
-        topology.setMessages(messages)
+        messages.foreach(subject.kafkaStreams.pipeInput)
         subject.start()
 
         //then
-        val result = topology.stream
+        val result = subject.kafkaStreams
           .readOutput(TopicsHelper.mediaElementScrapperTopic, new StringDeserializer, new StringDeserializer)
           .value()
 
         parse(result).fold(
-          fail => throw new Exception("Unexpected Exception"),
+          _ => fail(),
           json => {
             assert(root.id.string.nonEmpty(json))
             assert(root.pk.string.nonEmpty(json))
@@ -45,28 +43,27 @@ class OrchestrationSpec extends WordSpec with MustMatchers with TestMessages wit
             assert(root.image_versions2.candidates.each.hash_image_reference.string.getAll(json).nonEmpty)
           }
         )
-        topology.close
+        subject.close()
       }
       s"don't insert a element in ${TopicsHelper.mediaElementScrapperTopic} when is invalid media Json" in {
 
         //given
-        val topology                                           = new TestTopology
-        val subject                                            = new Orchestration(topology = topology)
+        val subject: OrchestrationTrait[TopologyTestDriver]    = new OrchestrationTestTopology()
         val message1: ConsumerRecord[Array[Byte], Array[Byte]] = factory.create("{}")
         val messages                                           = List(message1)
 
         //when
-        topology.setMessages(messages)
+        messages.foreach(subject.kafkaStreams.pipeInput)
         subject.start()
 
         //then
-        val result = topology.stream
+        val result = subject.kafkaStreams
           .readOutput(TopicsHelper.mediaElementScrapperTopic, new StringDeserializer, new StringDeserializer)
 
         assertThrows[NullPointerException] {
           parse(result.value()).fold(_ => (), fail())
         }
-        topology.close
+        subject.close()
       }
     }
   }
