@@ -56,3 +56,9 @@ package object domain {
   }
 
 }
+
+object App1 extends App {
+  import domain._
+  val x: QueueRequest = domain.MediaRequest("id1")
+  println(x.asJson.noSpaces)
+}

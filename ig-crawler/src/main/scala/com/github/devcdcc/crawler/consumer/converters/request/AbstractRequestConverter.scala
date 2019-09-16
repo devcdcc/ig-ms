@@ -14,7 +14,7 @@ import org.http4s.circe.CirceEntityDecoder._
 import scala.concurrent.ExecutionContext
 
 abstract class AbstractRequestConverter[A <: QueueRequest]
-    extends AbstractConverter[Option[String], A, (A, Json) => A]
+    extends AbstractConverter[Option[String], A, (A, Json) => Either[Throwable, A]]
     with AbstractRequester[A, Either[Throwable, Json]] {
   implicit val ec: ExecutionContext = AbstractRequestConverter.ec
   val httpClient: Client[IO]        = AbstractRequestConverter.httpClient
