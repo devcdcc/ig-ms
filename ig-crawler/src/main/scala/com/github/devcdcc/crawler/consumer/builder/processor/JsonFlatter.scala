@@ -2,7 +2,7 @@ package com.github.devcdcc.crawler.consumer.builder.processor
 
 import io.circe.Json
 
-trait JsonFlatter {
+sealed trait JsonFlatter {
   protected def flatter(json: Json): Iterable[Json]
 }
 

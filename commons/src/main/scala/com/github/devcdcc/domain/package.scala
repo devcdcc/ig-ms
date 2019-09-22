@@ -1,6 +1,5 @@
 package com.github.devcdcc
 import io.circe.Json
-import io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
 
 package object domain {
 
@@ -55,10 +54,4 @@ package object domain {
 
   }
 
-}
-
-object App1 extends App {
-  import domain._
-  val x: QueueRequest = domain.MediaRequest("id1")
-  println(x.asJson.noSpaces)
 }

@@ -2,7 +2,6 @@ package com.github.devcdcc.crawler.consumer.converters.media
 
 import com.github.devcdcc.crawler.consumer.converters.AbstractConverter
 import io.circe.Json
-import services.random.RandomGenerator
 
 trait AbstractMediaConverter extends AbstractConverter[Int, Json, Json => Json] {
 

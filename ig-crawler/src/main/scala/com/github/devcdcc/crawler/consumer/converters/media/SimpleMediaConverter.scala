@@ -1,12 +1,7 @@
 package com.github.devcdcc.crawler.consumer.converters.media
 import io.circe.Json
-import cats.syntax.either._
-import io.circe._
-import io.circe.parser._
 import io.circe.optics.JsonPath._
 import services.random.RandomGeneratorObject
-import io.circe.generic.auto._
-import io.circe.syntax._
 
 class SimpleMediaConverter extends AbstractMediaConverter {
 

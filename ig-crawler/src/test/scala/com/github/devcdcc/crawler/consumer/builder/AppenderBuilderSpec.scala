@@ -15,6 +15,8 @@ import org.mockito.ArgumentMatchers
 import org.scalatest.mockito.MockitoSugar
 import org.mockito.Mockito._
 import org.scalatest.{MustMatchers, WordSpec}
+import com.github.devcdcc.crawler.api._
+import com.github.devcdcc.crawler.api.exception.NextElementNotFoundException
 
 class AppenderBuilderSpec extends WordSpec with MustMatchers with TestMessages with MockitoSugar {
 
@@ -91,11 +93,16 @@ class AppenderBuilderSpec extends WordSpec with MustMatchers with TestMessages w
           val result: Either[Throwable, QueueRequest] = subject.getNextRequest(original, response)
 
           //then
-          assertThrows[NoSuchElementException] {
+          assertThrows[NextElementNotFoundException] {
             throw result.swap.toOption.head
           }
         }
+      }
+      "exists converter" should {
         "return QueueRequest with some next_value for non final element" in {
+          pending
+        }
+        "return QueueRequest with None next_value for final element" in {
           pending
         }
       }

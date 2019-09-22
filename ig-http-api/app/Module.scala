@@ -4,15 +4,13 @@ import akka.actor.ActorSystem
 import com.github.devcdcc.services.queue.Publisher
 import com.github.devcdcc.services.queue.publishers.KafkaPublisher
 import com.google.inject.{AbstractModule, Provides, Singleton}
-import com.typesafe.config.{Config, ConfigFactory}
-import javax.inject.Inject
-import org.apache.kafka.common.serialization.{Serializer, StringSerializer}
-import play.inject.DelegateApplicationLifecycle
+import com.typesafe.config.ConfigFactory
+import org.apache.kafka.common.serialization.StringSerializer
 import services.random
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-import scala.util.{Failure, Success, Try}
+import scala.util.Try
 
 class Module extends AbstractModule {
 
@@ -37,8 +35,8 @@ class Module extends AbstractModule {
   def publisher: Publisher[String, String] = kafkaInstance
 
   //    ActorSystem.create("kafka-producer", ConfigFactory.parseFile(new java.io.File("config/application.conf")))
-  lazy val config = ConfigFactory.load()
-  lazy val system = ActorSystem.create("kafka-producer", config)
+  private lazy val config = ConfigFactory.load()
+  private lazy val system = ActorSystem.create("kafka-producer", config)
 
   sys.addShutdownHook {
     kafkaInstance.close match {
