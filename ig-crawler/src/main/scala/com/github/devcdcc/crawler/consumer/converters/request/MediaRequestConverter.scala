@@ -1,4 +1,5 @@
 package com.github.devcdcc.crawler.consumer.converters.request
+
 import com.github.devcdcc.domain
 import io.circe.Json
 

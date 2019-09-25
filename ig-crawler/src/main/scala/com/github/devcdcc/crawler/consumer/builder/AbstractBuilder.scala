@@ -5,5 +5,5 @@ import org.apache.kafka.streams.scala.kstream.KStream
 trait AbstractBuilder[K, V] {
   val topic: String
   val topicStream: KStream[K, V]
-  def transact: Unit = _
+  def transact: Unit = ()
 }

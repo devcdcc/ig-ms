@@ -1,22 +1,18 @@
 package com.github.devcdcc.crawler.consumer.builder
 
 import com.github.devcdcc.crawler.TestMessages
+import com.github.devcdcc.crawler.api.exception.NextElementNotFoundException
 import com.github.devcdcc.crawler.consumer.converters.request.AbstractRequestConverter
 import com.github.devcdcc.domain
-import com.github.devcdcc.domain.{MediaRequest, PathHelper, QueueRequest, UserRequest}
-import com.github.devcdcc.helpers.TopicsHelper
-import io.circe.{Json, JsonObject, Printer}
+import com.github.devcdcc.domain.{MediaRequest, QueueRequest, UserRequest}
 import io.circe.generic.auto._
 import io.circe.syntax._
-import org.apache.kafka.common.serialization.StringSerializer
+import io.circe.{Json, Printer}
 import org.apache.kafka.streams.scala.StreamsBuilder
-import org.apache.kafka.streams.test.ConsumerRecordFactory
 import org.mockito.ArgumentMatchers
-import org.scalatest.mockito.MockitoSugar
 import org.mockito.Mockito._
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{MustMatchers, WordSpec}
-import com.github.devcdcc.crawler.api._
-import com.github.devcdcc.crawler.api.exception.NextElementNotFoundException
 
 class AppenderBuilderSpec extends WordSpec with MustMatchers with TestMessages with MockitoSugar {
 
@@ -90,21 +86,17 @@ class AppenderBuilderSpec extends WordSpec with MustMatchers with TestMessages w
 
           //when
           when(converters.find(ArgumentMatchers.any())) thenReturn None
-          val result: Either[Throwable, QueueRequest] = subject.getNextRequest(original, response)
+          val result = subject.getNextRequest(original, response)
 
           //then
           assertThrows[NextElementNotFoundException] {
-            throw result.swap.toOption.head
+            throw result.response.swap.toOption.head
           }
         }
       }
-      "exists converter" should {
-        "return QueueRequest with some next_value for non final element" in {
-          pending
-        }
-        "return QueueRequest with None next_value for final element" in {
-          pending
-        }
+      "exists converter" should { // pending until converters were created.
+        "return QueueRequest with some next_value for non final element" in pending
+        "return QueueRequest with None next_value for final element" in pending
       }
     }
   }
