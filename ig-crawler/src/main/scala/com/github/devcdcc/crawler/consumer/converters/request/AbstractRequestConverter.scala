@@ -13,15 +13,14 @@ import org.http4s.client.{Client, JavaNetClientBuilder}
 import org.http4s.circe.CirceEntityDecoder._
 import scala.concurrent.ExecutionContext
 
-abstract class AbstractRequestConverter[A <: QueueRequest]
-    extends AbstractConverter[Option[String], A, (A, Json) => Either[Throwable, A]]
-    with AbstractRequester[A, Either[Throwable, Json]] {
+abstract class AbstractRequestConverter
+    extends AbstractConverter[Option[Any], QueueRequest, (QueueRequest, Json) => Either[Throwable, QueueRequest]]
+    with AbstractRequester[QueueRequest, Either[Throwable, Json]] {
   implicit val ec: ExecutionContext = AbstractRequestConverter.ec
   val httpClient: Client[IO]        = AbstractRequestConverter.httpClient
+  val elementType: Option[Any]      = None
 
-  override def isRequiredType(input: A): Boolean = input.requestType == elementType
-
-  override def doRequest(a: A): Either[Throwable, Json] = {
+  override def doRequest(a: QueueRequest): Either[Throwable, Json] = {
     val query = Query.empty :+ ("next_max_id", a.next_max_id)
     val uri   = Uri(path = a.requestURl, query = query)
     httpClient.expect[Json](uri).attempt.unsafeRunSync()

@@ -5,7 +5,7 @@ package object domain {
 
   sealed trait QueueRequest {
     def userId: String
-    def requestType: Option[String]
+    //def requestType: Option[String]
     def next_max_id: Option[String]
     def hasNext: Option[Boolean]
     def requestId: Option[String]
@@ -16,7 +16,7 @@ package object domain {
 
   case class MediaRequest(
       userId: String,
-      requestType: Option[String] = Some("media"),
+      //requestType: Option[String] = Some("media"),
       next_max_id: Option[String] = None,
       hasNext: Option[Boolean] = None,
       requestId: Option[String] = None,
@@ -26,7 +26,7 @@ package object domain {
 
   case class UserRequest(
       userId: String,
-      requestType: Option[String] = None,
+      //requestType: Option[String] = None,
       next_max_id: Option[String] = None,
       hasNext: Option[Boolean] = None,
       requestId: Option[String] = None,

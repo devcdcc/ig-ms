@@ -2,7 +2,7 @@ package com.github.devcdcc.helpers
 
 import com.typesafe.config.{Config, ConfigFactory}
 
-object TopicsHelper {
+trait TopicsHelper {
   def config: Config                        = ConfigFactory.load()
   val parseErrorTopicLabel: String          = config.getString("topics.parseErrorLabel")
   val appenderTopic: String                 = config.getString("topics.scrapper.appender")
@@ -14,3 +14,4 @@ object TopicsHelper {
   val userFollowersScrapperTopic: String    = config.getString("topics.scrapper.userFollowers")
   val followersElementScrapperTopic: String = config.getString("topics.scrapper.followersElement")
 }
+object TopicsHelper extends TopicsHelper {}

@@ -108,11 +108,11 @@ lazy val `ig-http-api` = (project in file("ig-http-api"))
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 lazy val `ig-crawler` = (project in file("ig-crawler"))
   .settings(
-    libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.3.0",
+    libraryDependencies += "com.github.pathikrit" %% "better-files"            % "3.8.0",
+    libraryDependencies += "org.apache.kafka"     %% "kafka-streams-scala"     % "2.3.0",
+    libraryDependencies += "org.apache.kafka"     % "kafka-streams-test-utils" % "2.3.0" % Test,
     libraryDependencies ++= (http4sLibraries ++ circeLibraries),
-    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
-    // https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams-test-utils
-    libraryDependencies += "org.apache.kafka" % "kafka-streams-test-utils" % "2.3.0" % Test
+    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
   )
   .dependsOn(commons)
   .aggregate(commons)

@@ -1,8 +1,8 @@
 package com.github.devcdcc.crawler.consumer.builder
 
-import com.github.devcdcc.crawler.TestMessages
+import com.github.devcdcc.crawler.{IGResponseExamples, TestMessages}
 import com.github.devcdcc.crawler.api.exception.NextElementNotFoundException
-import com.github.devcdcc.crawler.consumer.converters.request.AbstractRequestConverter
+import com.github.devcdcc.crawler.consumer.converters.request.{AbstractRequestConverter, MediaRequestConverter}
 import com.github.devcdcc.domain
 import com.github.devcdcc.domain.{MediaRequest, QueueRequest, UserRequest}
 import io.circe.generic.auto._
@@ -14,10 +14,15 @@ import org.mockito.Mockito._
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{MustMatchers, WordSpec}
 
-class AppenderBuilderSpec extends WordSpec with MustMatchers with TestMessages with MockitoSugar {
+class AppenderBuilderSpec
+    extends WordSpec
+    with MustMatchers
+    with TestMessages
+    with MockitoSugar
+    with IGResponseExamples {
 
   private val builder: StreamsBuilder = new StreamsBuilder
-  private val converters              = mock[List[AbstractRequestConverter[domain.QueueRequest]]]
+  private val converters              = mock[List[AbstractRequestConverter]]
   implicit val printer: Printer       = Printer.noSpaces.copy(dropNullValues = true)
   private val subject                 = new AppenderBuilder(builder = builder, converters = converters)
   "A AppenderBuilder" can {
@@ -61,12 +66,10 @@ class AppenderBuilderSpec extends WordSpec with MustMatchers with TestMessages w
         "return Left of NoSuchElementException" in {
           //given
           val original: QueueRequest = MediaRequest("id")
-          val expected: QueueRequest = null
-          val response: Json         = null
 
           //when
           when(
-            converters.find(ArgumentMatchers.any[AbstractRequestConverter[domain.QueueRequest] => Boolean]())
+            converters.find(ArgumentMatchers.any[AbstractRequestConverter => Boolean]())
           ) thenReturn None
           val result: Either[Throwable, Json] = subject.doRequest(original)
 
@@ -78,6 +81,51 @@ class AppenderBuilderSpec extends WordSpec with MustMatchers with TestMessages w
       }
     }
     "getNextRequest" when {
+      "converter exists and has a next value" should {
+        "return right for MediaRequest " in {
+
+          //given
+          val original: QueueRequest = MediaRequest("id")
+          val expected: Either[Throwable, QueueRequest] =
+            Right(MediaRequest("id", Some("2115131715534378849_375222529"), Some(true), None, None, None))
+          val response: Json = io.circe.parser.parse(MEDIA_RESPONSE).toOption.get
+
+          val value: AbstractRequestConverter =
+            new MediaRequestConverter
+          val value2 = value: AbstractRequestConverter
+          //when
+          when(
+            converters.find(ArgumentMatchers.any[AbstractRequestConverter => Boolean]())
+          ) thenReturn Some(value)
+          val result = subject.getNextRequest(original, response)
+          //then
+          result.response mustBe expected
+        }
+        "return right for UserRequest" in pending
+      }
+      "converter exists and has't a next value" should {
+        "return right for MediaRequest " in {
+
+          //given
+          val original: QueueRequest = MediaRequest("id")
+          val expected: Either[Throwable, QueueRequest] =
+            Right(MediaRequest("id", None, None, None, None, None))
+          val response: Json = io.circe.parser.parse(MEDIA_RESPONSE_WITHOUT_NEXT_VALUE).toOption.get
+
+          val value: AbstractRequestConverter =
+            new MediaRequestConverter
+          //when
+          when(
+            converters.find(ArgumentMatchers.any[AbstractRequestConverter => Boolean]())
+          ) thenReturn Some(value)
+          val result = subject.getNextRequest(original, response)
+          //then
+          assertThrows[NoSuchElementException] {
+            throw result.response.swap.toOption.head
+          }
+        }
+        "return right for UserRequest" in pending
+      }
       "converter is not found" should {
         "return Left of NoSuchElementException" in {
           //given
@@ -94,10 +142,9 @@ class AppenderBuilderSpec extends WordSpec with MustMatchers with TestMessages w
           }
         }
       }
-      "exists converter" should { // pending until converters were created.
-        "return QueueRequest with some next_value for non final element" in pending
-        "return QueueRequest with None next_value for final element" in pending
-      }
+    }
+    "transact" when {
+      ""
     }
   }
 }
