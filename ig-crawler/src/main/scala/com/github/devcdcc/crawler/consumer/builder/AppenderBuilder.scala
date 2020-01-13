@@ -1,6 +1,6 @@
 package com.github.devcdcc.crawler.consumer.builder
 
-import com.github.devcdcc.crawler.api.exception.NextElementNotFoundException
+import com.github.devcdcc.crawler.api.exception._
 import com.github.devcdcc.crawler.consumer.converters.request.AbstractRequestConverter
 import com.github.devcdcc.domain
 import com.github.devcdcc.domain.QueueRequest
@@ -8,6 +8,9 @@ import com.github.devcdcc.helpers.TopicsHelper
 import io.circe.Json
 import io.circe.syntax._
 import io.circe.generic.auto._
+
+import org.apache.kafka.streams.scala.ImplicitConversions._
+import org.apache.kafka.streams.scala.Serdes._
 import org.apache.kafka.streams.scala.StreamsBuilder
 import org.apache.kafka.streams.scala.kstream.KStream
 
@@ -31,7 +34,7 @@ class AppenderBuilder[T <: domain.QueueRequest](
       Left(NextElementNotFoundException())
     else
       converters.find(_.isRequiredType(original)) match {
-        case None            => Left(NextElementNotFoundException("AbstractRequestConverter can't be found"))
+        case None            => Left(new NoSuchElementException("AbstractRequestConverter can't be found"))
         case Some(converter) => converter.convert(original, response)
       }
   )
@@ -53,22 +56,34 @@ class AppenderBuilder[T <: domain.QueueRequest](
    */
   override def transact: Unit = {
     super.transact
-    failedQueueRequest.to(s"$topic.error.parsing")(null)
+    failedQueueRequest.to(s"$topic.error.parsing")
     httpResponseStream
       .flatMapValues((_, value) => value.swap.toOption)
       .mapValues((key, error) => error._1.asJson.noSpaces)
-      .to(s"$topic.error.request")(null)
+      .to(s"$topic.error.request")
     val validResponse = httpResponseStream
       .flatMapValues((_, value) => value.toOption)
     validResponse
       .mapValues(_._2.noSpaces)
-      .to(s"$topic.response")(null)
+      .to(TopicsHelper.dataTopic)
     val nextResponse = validResponse.mapValues((key, response) => validResponseToNextElement(response))
-    nextResponse.flatMapValues(_.swap.toOption).mapValues(_._1.asJson.noSpaces).to(s"$topic.error.next")(null)
-    nextResponse.flatMapValues(_.toOption).mapValues(_.asJson.noSpaces).to(topic)(null)
+    nextResponse
+      .filterNot(removeFinalElements)
+      .flatMapValues(_.swap.toOption)
+      .mapValues(_._1.asJson.noSpaces)
+      .to(s"$topic.error.next")
+    nextResponse.flatMapValues(_.toOption).mapValues(_.asJson.noSpaces).to(topic)
   }
 
-  private def validResponseToNextElement(response: (QueueRequest, Json)) = {
+  private def removeFinalElements(key: String, either: Either[(QueueRequest, Throwable), QueueRequest]) =
+    either match {
+      case Left((_, NextElementNotFoundException(_))) => true
+      case _                                          => false
+    }
+
+  private def validResponseToNextElement(
+      response: (QueueRequest, Json)
+    ): Either[(QueueRequest, Throwable), QueueRequest] = {
     val (request, value) = response
     getNextRequest(request, value) match {
       case NextBuild(original, Left(failure)) =>

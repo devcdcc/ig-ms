@@ -2,19 +2,21 @@ package com.github.devcdcc.crawler.consumer
 
 import java.util.Properties
 
-import com.github.devcdcc.crawler.consumer.builder.AbstractBuilder
+import com.github.devcdcc.crawler.consumer.builder.{AbstractBuilder, AppenderBuilder}
 import com.github.devcdcc.crawler.consumer.builder.processor.MediaScrapperBuilder
 import com.github.devcdcc.crawler.consumer.converters.media.{
   AbstractMediaConverter,
   CarouselMediaConverter,
   SimpleMediaConverter
 }
+import com.github.devcdcc.crawler.consumer.converters.request.{AbstractRequestConverter, MediaRequestConverter}
 import com.github.devcdcc.helpers.TopicsHelper._
 import org.apache.kafka.streams.scala._
 import org.apache.kafka.streams.{StreamsConfig, Topology}
 
 abstract class OrchestrationTrait[K] {
-  val converters: List[AbstractMediaConverter] = List(new SimpleMediaConverter, new CarouselMediaConverter)
+  val mediaConverters: List[AbstractMediaConverter]     = List(new SimpleMediaConverter, new CarouselMediaConverter)
+  val requestConverters: List[AbstractRequestConverter] = List(new MediaRequestConverter)
 
   val props: Properties = {
     val p = new Properties()
@@ -26,10 +28,14 @@ abstract class OrchestrationTrait[K] {
     p
   }
 
-  val builder: StreamsBuilder                          = new StreamsBuilder
-  val scrappers: List[AbstractBuilder[String, String]] = List(new MediaScrapperBuilder(builder, converters))
-  lazy val build: Topology                             = builder.build()
-  scrappers.foreach(_.transact)
+  val builder: StreamsBuilder = new StreamsBuilder
+
+  val builders: List[AbstractBuilder[String, String]] = List(
+    new AppenderBuilder(builder = builder, converters = requestConverters),
+    new MediaScrapperBuilder(builder, mediaConverters)
+  )
+  lazy val build: Topology = builder.build()
+  builders.foreach(_.transact)
 
   val kafkaStreams: K
   def start(): Unit

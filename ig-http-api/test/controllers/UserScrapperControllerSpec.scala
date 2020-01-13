@@ -57,6 +57,7 @@ class UserScrapperControllerSpec extends PlaySpec with MockitoSugar {
         status(result) mustBe expected
       }
       "return json when everything is okay" in {
+        pending
         //given
         val userId = _userId
         val url    = s"/user/$userId$suffix"

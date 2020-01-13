@@ -1,14 +1,16 @@
 package com.github.devcdcc.crawler.consumer.builder
 
-import com.github.devcdcc.crawler.{IGResponseExamples, TestMessages}
-import com.github.devcdcc.crawler.api.exception.NextElementNotFoundException
+import com.github.devcdcc.crawler.consumer.OrchestrationTestTopology
 import com.github.devcdcc.crawler.consumer.converters.request.{AbstractRequestConverter, MediaRequestConverter}
-import com.github.devcdcc.domain
+import com.github.devcdcc.crawler.{IGResponseExamples, TestMessages}
 import com.github.devcdcc.domain.{MediaRequest, QueueRequest, UserRequest}
+import com.github.devcdcc.helpers.TopicsHelper
 import io.circe.generic.auto._
 import io.circe.syntax._
 import io.circe.{Json, Printer}
+import org.apache.kafka.common.serialization.{StringDeserializer, StringSerializer}
 import org.apache.kafka.streams.scala.StreamsBuilder
+import org.apache.kafka.streams.test.ConsumerRecordFactory
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito._
 import org.scalatest.mockito.MockitoSugar
@@ -21,10 +23,10 @@ class AppenderBuilderSpec
     with MockitoSugar
     with IGResponseExamples {
 
-  private val builder: StreamsBuilder = new StreamsBuilder
-  private val converters              = mock[List[AbstractRequestConverter]]
-  implicit val printer: Printer       = Printer.noSpaces.copy(dropNullValues = true)
-  private val subject                 = new AppenderBuilder(builder = builder, converters = converters)
+  private val subjectBuilder: StreamsBuilder = new StreamsBuilder
+  private val converters                     = mock[List[AbstractRequestConverter]]
+  implicit val printer: Printer              = Printer.noSpaces.copy(dropNullValues = true)
+  private val subject                        = new AppenderBuilder(builder = subjectBuilder, converters = converters)
   "A AppenderBuilder" can {
     "invoke jsonToRequest" when {
       "message is valid QueueRequest" should {
@@ -87,12 +89,20 @@ class AppenderBuilderSpec
           //given
           val original: QueueRequest = MediaRequest("id")
           val expected: Either[Throwable, QueueRequest] =
-            Right(MediaRequest("id", Some("2115131715534378849_375222529"), Some(true), None, None, None))
+            Right(
+              MediaRequest(
+                userId = "id",
+                next_max_id = Some("2115131715534378849_375222529"),
+                hasNext = Some(true),
+                None,
+                None,
+                None
+              )
+            )
           val response: Json = io.circe.parser.parse(MEDIA_RESPONSE).toOption.get
 
           val value: AbstractRequestConverter =
             new MediaRequestConverter
-          val value2 = value: AbstractRequestConverter
           //when
           when(
             converters.find(ArgumentMatchers.any[AbstractRequestConverter => Boolean]())
@@ -137,14 +147,46 @@ class AppenderBuilderSpec
           val result = subject.getNextRequest(original, response)
 
           //then
-          assertThrows[NextElementNotFoundException] {
+          assertThrows[NoSuchElementException] {
             throw result.response.swap.toOption.head
           }
         }
       }
     }
-    "transact" when {
-      ""
+    "transact AppenderBuilder" when {
+      val factory =
+        new ConsumerRecordFactory(TopicsHelper.appenderTopic, new StringSerializer, new StringSerializer)
+      "have next value" should {
+        "fill all necessary topics" in {
+          pending
+          // given
+          val testTopology = new OrchestrationTestTopology {
+            override val requestConverters: List[AbstractRequestConverter] = converters
+          }
+          val mediaRequestConverter: AbstractRequestConverter = mock[MediaRequestConverter]
+          val requestOne: QueueRequest                        = MediaRequest("1")
+          val responseOne: Json                               = io.circe.parser.parse(MEDIA_RESPONSE).toOption.get
+          val requestTwo                                      = MediaRequest("id", Some("2115131715534378849_375222529"), Some(true), None, None, None)
+          val responseTwo: Json                               = io.circe.parser.parse(MEDIA_RESPONSE_WITHOUT_NEXT_VALUE).toOption.get
+          val requestThree                                    = requestTwo.copy(hasNext = Some(false))
+
+          //when
+          when(converters.find(ArgumentMatchers.any())) thenReturn Some(mediaRequestConverter)
+          when(mediaRequestConverter.doRequest(requestOne)) thenReturn Right(responseOne)
+          when(mediaRequestConverter.convert(requestOne, responseOne)) thenReturn Right(requestTwo)
+          when(mediaRequestConverter.doRequest(requestTwo)) thenReturn Right(responseTwo)
+          when(mediaRequestConverter.convert(requestTwo, responseTwo)) thenReturn Right(requestThree)
+          testTopology.start()
+          val topology = testTopology.kafkaStreams
+
+          //should
+          topology.pipeInput(factory.create(requestOne.asJson.noSpaces));
+          (1 until 3).foreach { _ =>
+            println(topology.readOutput(TopicsHelper.appenderTopic, new StringDeserializer, new StringDeserializer))
+          }
+
+        }
+      }
     }
   }
 }

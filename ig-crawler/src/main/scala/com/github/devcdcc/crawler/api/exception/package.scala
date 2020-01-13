@@ -4,4 +4,5 @@ package object exception {
 
   type CrawlerException = Exception
   case class NextElementNotFoundException(message: String = "Element not found") extends CrawlerException(message)
+  case class ConverterNotFoundException(message: String = "Element not found")   extends CrawlerException(message)
 }
